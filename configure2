@@ -1,7 +1,7 @@
 #!/bin/sh
 
-dvdnav_sh_version=4.1.2
-dvdnav_sh_major=`echo $dvdnav_sh_version | awk -F. '{print $1}'`
+dvdread_sh_version=4.1.2
+dvdread_sh_major=`echo $dvdread_sh_version | awk -F. '{print $1}'`
 
 cc=gcc
 make=make
@@ -27,14 +27,13 @@ show_help(){
   echo "  --prefix=PREFIX          install in PREFIX [$PREFIX]"
   echo "  --libdir=DIR             install libs in DIR [PREFIX/lib]"
   echo "  --shlibdir=DIR           install shared libs in DIR [PREFIX/lib]"
-  echo "  --incdir=DIR             install includes in DIR [PREFIX/include/dvdnav]"
+  echo "  --incdir=DIR             install includes in DIR [PREFIX/include/libdvdread]"
   echo "  --enable-static          build static libraries [default=yes]"
   echo "  --disable-static         do not build static libraries [default=no]"
   echo "  --enable-shared          build shared libraries [default=no]"
   echo "  --disable-shared         do not build shared libraries [default=yes]"
   echo "  --enable-debug           compile with debug symbols [default=yes]"
   echo "  --disable-debug          compile without debug symbols [default=no]"
-  echo "  --with-dvdread=PATH      compile libdvdnav with an external libdvdread"
   echo "Advanced options (experts only):"
   echo "  --cc=CC                  use C compiler CC [$cc]"
   echo "  --make=MAKE              use specified make [$make]"
@@ -48,13 +47,10 @@ show_help(){
 
 SHARED=yes
 STATIC=yes
-DVDREAD=internal
-dvdread_dir=src/libdvdread/
 PREFIX=/usr/local/
 INSTALLSTRIP=-s
 USEDEBUG=-g
 optimizations="-O3"
-threadlib="-lpthread"
 
 for opt do
   optval=`echo $opt | cut -d '=' -f 2-`
@@ -66,8 +62,6 @@ for opt do
   --enable-static) STATIC=yes
   ;;
   --disable-static) STATIC=no
-  ;;
-  --with-dvdread=*) DVDREAD="$optval"
   ;;
   --prefix=*) PREFIX="$optval"
   ;;
@@ -102,17 +96,7 @@ PREFIX=`cd $PREFIX && pwd`
 
 test -z "$libdir" && libdir=$PREFIX/lib
 test -z "$shlibdir" && shlibdir=$PREFIX/lib
-test -z "$incdir" && incdir=$PREFIX/include/dvdnav && dvdread_incdir=$PREFIX/include/libdvdread
-
-if [ "$DVDREAD" != "internal" ] ; then
-  if [ -d "$DVDREAD" -a -f "$DVDREAD/dvd_reader.h" ] ; then
-    dvdread_dir="$DVDREAD"
-    DVDREAD=external
-  else
-    DVDREAD=internal
-  fi
-fi
-
+test -z "$incdir" && dvdread_incdir=$PREFIX/include/libdvdread
 
 targetos=`uname -s`
 case $targetos in
@@ -131,11 +115,10 @@ libdir=$libdir
 shlibdir=$shlibdir
 incdir=$incdir
 dvdread_incdir=$dvdread_incdir
-THREADLIB=$threadlib
 BUILD_SHARED=$SHARED
 BUILD_STATIC=$STATIC
-SHLIB_VERSION=$dvdnav_sh_version
-SHLIB_MAJOR=$dvdnav_sh_major
+SHLIB_VERSION=$dvdread_sh_version
+SHLIB_MAJOR=$dvdread_sh_major
 CC=$cc
 MAKE=$make
 CFLAGS=$optimizations $cflags
@@ -143,8 +126,6 @@ LDFLAGS=$ldflags
 SHLDFLAGS=$SHLDFLAGS
 INSTALLSTRIP=$INSTALLSTRIP
 USEDEBUG=$USEDEBUG
-DVDREAD=$DVDREAD
-DVDREAD_DIR=$dvdread_dir
 
 SRC_PATH="$source_path"
 SRC_PATH_BARE=$source_path

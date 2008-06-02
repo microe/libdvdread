@@ -15,7 +15,6 @@ Options:
 	[--exec-prefix[=DIR]]
 	[--version]
         [--libs]
-        [--minilibs]
 	[--cflags]
 EOF
 	exit $1
@@ -49,16 +48,13 @@ while test $# -gt 0; do
       echo_exec_prefix=yes
       ;;
     --version)
-      echo @DVDNAV_MAJOR@.@DVDNAV_MINOR@.@DVDNAV_SUB@
+      echo @DVDREAD_MAJOR@.@DVDREAD_MINOR@.@DVDREAD_SUB@
       ;;
     --cflags)
       echo_cflags=yes
       ;;
     --libs)
       echo_libs=yes
-      ;;
-    --minilibs)
-      echo_minilibs=yes
       ;;
     *)
       usage 1 1>&2
@@ -76,13 +72,9 @@ if test "$echo_exec_prefix" = "yes"; then
 fi
 
 if test "$echo_cflags" = "yes"; then
-      echo -I@includedir@ -I@includedir@/libdvdread @THREAD_CFLAGS@
+      echo -I@includedir@ -I@includedir@/libdvdread
 fi
 
 if test "$echo_libs" = "yes"; then
-      echo -L@libdir@ -ldvdnav -ldvdread @THREAD_LIBS@
+      echo -L@libdir@ -ldvdnav -ldvdread
 fi
-
-if test "$echo_minilibs" = "yes"; then
-      echo -L@libdir@ -ldvdnavmini @THREAD_LIBS@
-fi      

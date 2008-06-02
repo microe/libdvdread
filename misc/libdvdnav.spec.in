@@ -4,7 +4,7 @@
 %define rel     0
 
 Name:		%{name}
-Summary:	DVD Navigation library
+Summary:	Low level DVD access library
 Version:	%{ver}
 Release:	%{rel}
 Group:		Development/Libraries
@@ -14,8 +14,8 @@ Source:		%{name}-%{version}.tar.gz
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
-libdvdnav provides support to applications wishing to make use of advanced
-DVD navigation features.
+libdvdread provides support to applications wishing to make use of basic
+DVD reading features.
 
 %prep
 %setup
@@ -34,12 +34,12 @@ rm -r $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root)
 %doc AUTHORS ChangeLog COPYING INSTALL README
-%{prefix}/bin/dvdnav-config
-%{prefix}/lib/libdvdnav*.la
-%{prefix}/lib/libdvdnav*.so.*
-%{prefix}/lib/libdvdnav*.so
-%{prefix}/include/dvdnav/*
-@INSTALL_M4_TRUE@@ACLOCAL_DIR@/dvdnav.m4
+%{prefix}/bin/dvdread-config
+%{prefix}/lib/libdvdread*.la
+%{prefix}/lib/libdvdread*.so.*
+%{prefix}/lib/libdvdread*.so
+%{prefix}/include/libdvdread/*
+@INSTALL_M4_TRUE@@ACLOCAL_DIR@/dvdread.m4
 
 %changelog
 * Sun Mar 18 2002 Daniel Caujolle-Bert <f1rmb@users.sourceforge.net>

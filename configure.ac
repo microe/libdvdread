@@ -1,9 +1,9 @@
 dnl --------------------------------------------------------------
-dnl Configure.ac for libdvdnav
+dnl Configure.ac for libdvdread
 dnl --------------------------------------------------------------
 
 AC_INIT
-AC_CONFIG_SRCDIR([src/dvdnav.c])
+AC_CONFIG_SRCDIR([src/dvd_reader.h])
 
 dnl --------------------------------------------------------------
 dnl Require autoconf version 2.53
@@ -11,26 +11,26 @@ dnl --------------------------------------------------------------
 AC_PREREQ(2.53)
 
 dnl --------------------------------------------------------------
-dnl Making releases: DVDNAV_SUB += 1; change DVDNAV_LT_* accordingly
+dnl Making releases: DVDREAD_SUB += 1; change DVDREAD_LT_* accordingly
 dnl --------------------------------------------------------------
-DVDNAV_MAJOR=0
-DVDNAV_MINOR=2
-DVDNAV_SUB=1
-DVDNAV_PRE="cvs"
+DVDREAD_MAJOR=0
+DVDREAD_MINOR=2
+DVDREAD_SUB=1
+DVDREAD_PRE="cvs"
 
-AC_SUBST(DVDNAV_MAJOR)
-AC_SUBST(DVDNAV_MINOR)
-AC_SUBST(DVDNAV_SUB)
+AC_SUBST(DVDREAD_MAJOR)
+AC_SUBST(DVDREAD_MINOR)
+AC_SUBST(DVDREAD_SUB)
 
-dnl The libtool version numbers (DVDNAV_LT_*); Don't even think about faking this!
+dnl The libtool version numbers (DVDREAD_LT_*); Don't even think about faking this!
 dnl 
 dnl immediately before every release do:
 dnl ===================================
 dnl if (the interface is totally unchanged from previous release)
-dnl    DVDNAV_LT_REVISION ++;
+dnl    DVDREAD_LT_REVISION ++;
 dnl else { /* interfaces have been added, removed or changed */
-dnl    DVDNAV_LT_REVISION = 0;
-dnl    DVDNAV_LT_CURRENT ++;
+dnl    DVDREAD_LT_REVISION = 0;
+dnl    DVDREAD_LT_CURRENT ++;
 dnl    if (any interfaces have been _added_ since last release)
 dnl       AGE ++;
 dnl    if (any interfaces have been _removed_ or _incompatibly changed_)
@@ -38,47 +38,47 @@ dnl       AGE = 0;
 dnl }
 dnl 
 dnl If you want to know more about what you are doing, here are some details:
-dnl  * DVDNAV_LT_CURRENT is the current API version
-dnl  * DVDNAV_LT_REVISION is an internal revision number which is increased when the API
+dnl  * DVDREAD_LT_CURRENT is the current API version
+dnl  * DVDREAD_LT_REVISION is an internal revision number which is increased when the API
 dnl    itself did not change
-dnl  * DVDNAV_LT_AGE is the number of previous API versions still supported by this library
+dnl  * DVDREAD_LT_AGE is the number of previous API versions still supported by this library
 dnl  * libtool has its own numbering scheme, because local library numbering schemes
 dnl    are platform dependent
 dnl  * in Linux, the library will be named
-dnl    libname.so.(DVDNAV_LT_CURRENT - DVDNAV_LT_AGE).DVDNAV_LT_AGE.DVDNAV_LT_REVISION
+dnl    libname.so.(DVDREAD_LT_CURRENT - DVDREAD_LT_AGE).DVDREAD_LT_AGE.DVDREAD_LT_REVISION
 
-DVDNAV_LT_CURRENT=5
-DVDNAV_LT_AGE=1
-DVDNAV_LT_REVISION=1
+DVDREAD_LT_CURRENT=5
+DVDREAD_LT_AGE=1
+DVDREAD_LT_REVISION=1
 
-AC_SUBST(DVDNAV_LT_CURRENT)
-AC_SUBST(DVDNAV_LT_AGE)
-AC_SUBST(DVDNAV_LT_REVISION)
+AC_SUBST(DVDREAD_LT_CURRENT)
+AC_SUBST(DVDREAD_LT_AGE)
+AC_SUBST(DVDREAD_LT_REVISION)
 
 PACKAGE="libdvdread"
 RELEASE="1"
-TAR_NAME=$PACKAGE-$DVDNAV_MAJOR.$DVDNAV_MINOR.$DVDNAV_SUB$DVDNAV_PRE
-SPEC_VERSION=$DVDNAV_MAJOR.$DVDNAV_MINOR.$DVDNAV_SUB$DVDNAV_PRE
+TAR_NAME=$PACKAGE-$DVDREAD_MAJOR.$DVDREAD_MINOR.$DVDREAD_SUB$DVDREAD_PRE
+SPEC_VERSION=$DVDREAD_MAJOR.$DVDREAD_MINOR.$DVDREAD_SUB$DVDREAD_PRE
 
 AC_SUBST(TAR_NAME)
 AC_SUBST(SPEC_VERSION)
 AC_SUBST(PACKAGE)
 AC_SUBST(RELEASE)
 
-LIBNAME=libdvdnav$DVDNAV_MAJOR
+LIBNAME=libdvdread$DVDREAD_MAJOR
 AC_SUBST(LIBNAME)
 
 AC_CANONICAL_TARGET
 
-AM_INIT_AUTOMAKE("libdvdnav", $DVDNAV_MAJOR.$DVDNAV_MINOR.$DVDNAV_SUB$DVDNAV_PRE)
+AM_INIT_AUTOMAKE("libdvdread", $DVDREAD_MAJOR.$DVDREAD_MINOR.$DVDREAD_SUB$DVDREAD_PRE)
 
 dnl --------------------------------------------------------------
 dnl Make possible to build for another arch.
 dnl --------------------------------------------------------------
-if test x$DVDNAV_BUILD != "x"; then
-  AC_MSG_RESULT(*** build forced to $DVDNAV_BUILD ***)
-  build=$DVDNAV_BUILD
-  host=$DVDNAV_BUILD
+if test x$DVDREAD_BUILD != "x"; then
+  AC_MSG_RESULT(*** build forced to $DVDREAD_BUILD ***)
+  build=$DVDREAD_BUILD
+  host=$DVDREAD_BUILD
 else
   check_athlon=yes
 fi
@@ -128,26 +128,6 @@ AC_TYPE_OFF_T
 AC_TYPE_SIZE_T
 dnl AC_CHECK_TYPES([ptrdiff_t])
 AC_C_BIGENDIAN
-
-dnl ---------------------------------------------
-dnl threads
-dnl ---------------------------------------------
-case $host in
-  *-*-freebsd*)
-    THREAD_LIBS="-L/usr/local/lib -pthread"
-    THREAD_CFLAGS="-I/usr/local/include -D_THREAD_SAFE"
-    CFLAGS="$THREAD_CFLAGS $CFLAGS"
-    ;;
-  *mingw32* | *cygwin*)
-    ;;
-  *)
-    AC_CHECK_LIB(pthread, pthread_create,
-	[THREAD_LIBS="-lpthread"],
-	AC_MSG_ERROR(pthread needed))
-    ;;
-esac
-AC_SUBST(THREAD_LIBS)
-AC_SUBST(THREAD_CFLAGS)
 
 dnl ---------------------------------------------
 dnl dynamic linker
@@ -207,7 +187,7 @@ AC_CHECK_PROG(DOXYGEN, doxygen, doxygen, no)
 dnl ---------------------------------------------
 dnl Some include paths ( !!! DO NOT REMOVE !!! )
 dnl ---------------------------------------------
-INCLUDES='-I$(top_srcdir) $(DVDNAV_CFLAGS)'
+INCLUDES='-I$(top_srcdir) $(DVDREAD_CFLAGS)'
 AC_SUBST(INCLUDES)
 
 dnl ---------------------------------------------
@@ -224,13 +204,9 @@ dnl ---------------------------------------------
 AC_OUTPUT([
 Makefile 
 src/Makefile
-src/libdvdread/Makefile
-src/vm/Makefile
 misc/Makefile
-misc/dvdnav-config
-misc/libdvdnav.spec
+misc/dvdread-config
+misc/libdvdread.spec
 misc/relchk.sh
 m4/Makefile
-doc/Makefile
-examples/Makefile
 ])

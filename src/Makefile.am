@@ -2,7 +2,7 @@ include $(top_srcdir)/misc/Makefile.common
 
 includedir = ${prefix}/include/libdvdread
 
-AM_CPPFLAGS = -DDVDNAV_COMPILE -I$(top_srcdir)/src/vm
+AM_CPPFLAGS = -I$(top_srcdir)/src
 
 lib_LTLIBRARIES = libdvdread.la
 
@@ -12,7 +12,7 @@ libdvdread_la_SOURCES = dvd_reader.c nav_read.c ifo_read.c \
 
 libdvdread_la_LIBADD = $(DYNAMIC_LD_LIBS)
 
-libdvdread_la_LDFLAGS = -version-info $(DVDNAV_LT_CURRENT):$(DVDNAV_LT_REVISION):$(DVDNAV_LT_AGE) \
+libdvdread_la_LDFLAGS = -version-info $(DVDREAD_LT_CURRENT):$(DVDREAD_LT_REVISION):$(DVDREAD_LT_AGE) \
 	-export-symbols-regex "(^dvd.*|^nav.*|^ifo.*|^DVD.*|^UDF.*)"
 
 include_HEADERS = dvd_reader.h nav_read.h ifo_read.h \

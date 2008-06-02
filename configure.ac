@@ -13,10 +13,10 @@ AC_PREREQ(2.53)
 dnl --------------------------------------------------------------
 dnl Making releases: DVDREAD_SUB += 1; change DVDREAD_LT_* accordingly
 dnl --------------------------------------------------------------
-DVDREAD_MAJOR=0
-DVDREAD_MINOR=2
-DVDREAD_SUB=1
-DVDREAD_PRE="cvs"
+DVDREAD_MAJOR=4
+DVDREAD_MINOR=1
+DVDREAD_SUB=2
+DVDREAD_PRE=""
 
 AC_SUBST(DVDREAD_MAJOR)
 AC_SUBST(DVDREAD_MINOR)
@@ -49,7 +49,7 @@ dnl    libname.so.(DVDREAD_LT_CURRENT - DVDREAD_LT_AGE).DVDREAD_LT_AGE.DVDREAD_L
 
 DVDREAD_LT_CURRENT=5
 DVDREAD_LT_AGE=1
-DVDREAD_LT_REVISION=1
+DVDREAD_LT_REVISION=2
 
 AC_SUBST(DVDREAD_LT_CURRENT)
 AC_SUBST(DVDREAD_LT_AGE)

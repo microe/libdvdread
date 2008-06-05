@@ -8,7 +8,7 @@
 #
 # run this to generate all the initial makefiles, etc.
 
-PROG=libdvdnav
+PROG=libdvdread
 
 # Minimum value required to build
 WANT_AUTOMAKE_1_6=1 export WANT_AUTOMAKE_1_6

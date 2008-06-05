@@ -1138,7 +1138,7 @@ int DVDDiscID( dvd_reader_t *dvd, unsigned char *discid )
 	    ssize_t bytes_read;
 	    size_t file_size = dvd_file->filesize * DVD_VIDEO_LB_LEN;
 	    char *buffer_base = malloc( file_size + 2048 );
-	    char *buffer = (unsigned char *)(((uintptr_t)buffer_base & ~((uintptr_t)2047)) + 2048);
+	    char *buffer = (char *)(((uintptr_t)buffer_base & ~((uintptr_t)2047)) + 2048);
 	    
 	    if( buffer_base == NULL ) {
 	        DVDCloseFile( dvd_file );

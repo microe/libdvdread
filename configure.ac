@@ -129,6 +129,17 @@ AC_TYPE_SIZE_T
 dnl AC_CHECK_TYPES([ptrdiff_t])
 AC_C_BIGENDIAN
 
+dnl -------------------------------------------------------------
+dnl Check for basic *nix fonction that we may emulate on windows.
+dnl -------------------------------------------------------------
+case $host in
+  *mingw32* | *cygwin*)
+    AC_CHECK_FUNCS(gettimeofday)
+    ;;
+  *)
+    ;;
+esac
+
 dnl ---------------------------------------------
 dnl dynamic linker
 dnl ---------------------------------------------

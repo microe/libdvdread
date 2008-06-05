@@ -591,13 +591,13 @@ static int UDFScanDir( dvd_reader_t *device, struct AD Dir, char *FileName,
             struct AD tmpFile;
 
             if( !strcasecmp( FileName, filename ) ) {
-                *FileICB = tmpICB;
+                memcpy(FileICB, &tmpICB, sizeof(tmpICB));
                 found = 1;
             }
             UDFMapICB(device, tmpICB, &tmpFiletype, partition, &tmpFile);
           } else {
             if( !strcasecmp( FileName, filename ) ) {
-                *FileICB = tmpICB;
+                memcpy(FileICB, &tmpICB, sizeof(tmpICB));
                 return 1;
             }
           }

@@ -39,19 +39,13 @@ detect_configure_ac() {
 # AUTOCONF
 #-------------------
 detect_autoconf() {
-  set -- `type autoconf 2>/dev/null`
-  RETVAL=$?
-  NUM_RESULT=$#
-  RESULT_FILE=$3
-  if [ $RETVAL -eq 0 -a $NUM_RESULT -eq 3 -a -f "$RESULT_FILE" ]; then
     AC="`autoconf --version | sed -n 1p | sed -e 's/[a-zA-Z\ \.\(\)\-]//g'`"
-    AUTOCONF_MIN="`echo $AUTOCONF_MIN | sed -e 's/[a-zA-Z\ \.\(\)\-]//g'`"
     if test $AC -lt 100 ; then
       AC=`expr $AC \* 10`
     fi
+    AUTOCONF_MIN="`echo $AUTOCONF_MIN | sed -e 's/[a-zA-Z\ \.\(\)\-]//g'`"
     if [ `expr $AC` -ge $AUTOCONF_MIN ]; then
       autoconf_ok=yes
-    fi
   else
     echo
     echo "**Error**: You must have \`autoconf' >= $AUTOCONF_MIN installed to" 

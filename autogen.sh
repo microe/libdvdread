@@ -23,7 +23,6 @@ case `echo -n` in
 esac
 
 detect_configure_ac() {
-
   srcdir=`dirname $0`
   test -z "$srcdir" && srcdir=.
 
@@ -46,13 +45,13 @@ detect_autoconf() {
     AUTOCONF_MIN="`echo $AUTOCONF_MIN | sed -e 's/[a-zA-Z\ \.\(\)\-]//g'`"
     if [ `expr $AC` -ge $AUTOCONF_MIN ]; then
       autoconf_ok=yes
-  else
-    echo
-    echo "**Error**: You must have \`autoconf' >= $AUTOCONF_MIN installed to" 
-    echo "           compile $PROG. Download the appropriate package"
-    echo "           for your distribution or source from ftp.gnu.org."
-    exit 1
-  fi
+    else
+      echo
+      echo "**Error**: You must have \`autoconf' >= $AUTOCONF_MIN installed to" 
+      echo "           compile $PROG. Download the appropriate package"
+      echo "           for your distribution or source from ftp.gnu.org."
+      exit 1
+    fi
 }
 
 run_autoheader () {

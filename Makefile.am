@@ -1,6 +1,5 @@
 include $(top_srcdir)/misc/Makefile.common
 
-AUTOMAKE_OPTIONS = 1.3
 
 SUBDIRS = src misc m4
 

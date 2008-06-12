@@ -1,4 +1,3 @@
-AUTOMAKE_OPTIONS = 1.6
 MOSTLYCLEANFILES     = *~ \\\#* .*~ .\\\#*
 MAINTAINERCLEANFILES = Makefile.in
 

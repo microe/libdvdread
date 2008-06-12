@@ -8,7 +8,7 @@ AC_CONFIG_SRCDIR([src/dvd_reader.h])
 dnl --------------------------------------------------------------
 dnl Require autoconf version 2.53
 dnl --------------------------------------------------------------
-AC_PREREQ(2.53)
+AC_PREREQ([2.53])
 
 dnl --------------------------------------------------------------
 dnl Making releases: DVDREAD_SUB += 1; change DVDREAD_LT_* accordingly

@@ -4,7 +4,7 @@
 ##
 
 topdir="`pwd`"
-distdir="@PACKAGE_NAME at -@PACKAGE_VERSION@"
+distdir="@PACKAGE_NAME@-@PACKAGE_VERSION@"
 log="$topdir/dist-log"
 logerror="$topdir/dist-errors"
 

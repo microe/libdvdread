@@ -1,6 +1,6 @@
 %define	prefix  @prefix@
-%define name    @PACKAGE@
-%define ver     @SPEC_VERSION@
+%define name    @PACKAGE_NAME@
+%define ver     @PACKAGE_VERSION@
 %define rel     0
 
 Name:		%{name}

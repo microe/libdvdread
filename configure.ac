@@ -2,21 +2,32 @@ dnl --------------------------------------------------------------
 dnl Configure.ac for libdvdread
 dnl --------------------------------------------------------------
 
-AC_INIT
-AC_CONFIG_SRCDIR([src/dvd_reader.h])
-
 dnl --------------------------------------------------------------
 dnl Require autoconf version 2.53
 dnl --------------------------------------------------------------
 AC_PREREQ([2.53])
 
 dnl --------------------------------------------------------------
-dnl Making releases: DVDREAD_SUB += 1; change DVDREAD_LT_* accordingly
+dnl Making releases: dvdread_sub += 1; change DVDREAD_LT_* accordingly
+dnl
+dnl These are defined in m4 so they can be passed to AC_INIT
 dnl --------------------------------------------------------------
-DVDREAD_MAJOR=4
-DVDREAD_MINOR=1
-DVDREAD_SUB=2
-DVDREAD_PRE=""
+m4_define([dvdread_major], [4])
+m4_define([dvdread_minor], [1])
+m4_define([dvdread_sub],   [2])
+m4_define([dvdread_pre],   [])
+
+AC_INIT([libdvdread], [dvdread_major.dvdread_minor.dvdread_sub[]dvdread_pre])
+AC_CONFIG_SRCDIR([src/dvd_reader.h])
+
+dnl create a config.h file (Automake will add -DHAVE_CONFIG_H)
+AC_CONFIG_HEADERS([config.h])
+AC_CANONICAL_HOST
+
+DVDREAD_MAJOR="dvdread_major"
+DVDREAD_MINOR="dvdread_minor"
+DVDREAD_SUB="dvdread_sub"
+DVDREAD_PRE="dvdread_pre"
 
 AC_SUBST(DVDREAD_MAJOR)
 AC_SUBST(DVDREAD_MINOR)
@@ -55,23 +66,6 @@ AC_SUBST(DVDREAD_LT_CURRENT)
 AC_SUBST(DVDREAD_LT_AGE)
 AC_SUBST(DVDREAD_LT_REVISION)
 
-PACKAGE="libdvdread"
-RELEASE="1"
-TAR_NAME=$PACKAGE-$DVDREAD_MAJOR.$DVDREAD_MINOR.$DVDREAD_SUB$DVDREAD_PRE
-SPEC_VERSION=$DVDREAD_MAJOR.$DVDREAD_MINOR.$DVDREAD_SUB$DVDREAD_PRE
-
-AC_SUBST(TAR_NAME)
-AC_SUBST(SPEC_VERSION)
-AC_SUBST(PACKAGE)
-AC_SUBST(RELEASE)
-
-LIBNAME=libdvdread$DVDREAD_MAJOR
-AC_SUBST(LIBNAME)
-
-AC_CANONICAL_TARGET
-
-AM_INIT_AUTOMAKE("libdvdread", $DVDREAD_MAJOR.$DVDREAD_MINOR.$DVDREAD_SUB$DVDREAD_PRE)
-
 dnl --------------------------------------------------------------
 dnl Make possible to build for another arch.
 dnl --------------------------------------------------------------
@@ -82,9 +76,6 @@ if test x$DVDREAD_BUILD != "x"; then
 else
   check_athlon=yes
 fi
-
-dnl create a config.h file (Automake will add -DHAVE_CONFIG_H)
-AM_CONFIG_HEADER(config.h)
 
 dnl --------------------------------------------------------------
 dnl Checks for programs.
@@ -101,6 +92,8 @@ AC_PROG_LN_S
 dnl --------------------------------------------------------------
 dnl Libtool
 dnl --------------------------------------------------------------
+dnl LT_PREREQ only available in libtool-2.2+
+dnl LT_PREREQ([1.4.0])
 AC_LIBTOOL_DLOPEN
 AC_DISABLE_STATIC
 AC_PROG_LIBTOOL

@@ -19,7 +19,7 @@ m4_define([dvdread_pre],   [])
 
 AC_INIT([libdvdread], [dvdread_major.dvdread_minor.dvdread_sub[]dvdread_pre])
 AC_CONFIG_SRCDIR([src/dvd_reader.h])
-AM_INIT_AUTOMAKE([1.3])
+AM_INIT_AUTOMAKE([1.6])
 
 dnl create a config.h file (Automake will add -DHAVE_CONFIG_H)
 AC_CONFIG_HEADERS([config.h])

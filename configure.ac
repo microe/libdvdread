@@ -196,14 +196,6 @@ INCLUDES='-I$(top_srcdir) $(DVDREAD_CFLAGS)'
 AC_SUBST(INCLUDES)
 
 dnl ---------------------------------------------
-dnl It seems automake 1.5 don't take care about this script
-dnl ---------------------------------------------
-if test ! -z $am_depcomp; then
-	DEPCOMP="depcomp"
-fi
-AC_SUBST(DEPCOMP)
-
-dnl ---------------------------------------------
 dnl Output configuration files
 dnl ---------------------------------------------
 AC_OUTPUT([

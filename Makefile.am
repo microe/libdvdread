@@ -17,15 +17,14 @@ EXTRA_DIST = autogen.sh \
 	     missing \
 	     mkinstalldirs \
 	     README \
-	     TODO \
-	     $(DEPCOMP)
+	     TODO
 
 MOSTLYCLEANFILES += $(PACKAGE)_$(VERSION).tar.gz \
 	$(distdir).tar.gz $(PACKAGE).tgz package_descriptions
 
 MAINTAINERCLEANFILES += configure $(ACLOCAL_M4) config.h.in \
 	ltmain.sh config.guess config.sub install-sh missing \
-	mkinstalldirs $(DEPCOMP)
+	mkinstalldirs
 
 world:
 	@$(MAKE) clean all install 2> warnings.log

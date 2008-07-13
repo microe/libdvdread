@@ -50,12 +50,12 @@ BUILDDEPS = Makefile config.mak
 
 ifeq ($(BUILD_SHARED),yes)
 all:	$(SHLIB) $(DVDREAD_SHLIB) dvdread-config
-install: $(SHLIB) $(DVDREAD_SHLIB) install-shared install-dvdread-config
+install: $(SHLIB) $(DVDREAD_SHLIB) install-shared install-dvdread-config install-dvdread.pc
 endif
 
 ifeq ($(BUILD_STATIC),yes)
 all:	$(LIB) $(DVDREAD_LIB) dvdread-config
-install: $(LIB) $(DVDREAD_LIB) install-static install-dvdread-config
+install: $(LIB) $(DVDREAD_LIB) install-static install-dvdread-config install-dvdread.pc
 endif
 
 install: install-headers
@@ -145,6 +145,22 @@ dvdread-config: $(.OBJDIR)
 install-dvdread-config: dvdread-config
 	install -d $(DESTDIR)$(PREFIX)/bin
 	install -m 0755 $(.OBJDIR)/dvdread-config $(DESTDIR)$(PREFIX)/bin/dvdread-config
+
+dvdread.pc: $(.OBJDIR)
+	@echo 'prefix=$(PREFIX)' > $(.OBJDIR)/dvdread.pc
+	@echo 'libdir=$(shlibdir)' >> $(.OBJDIR)/dvdread.pc
+	@echo 'includedir=$(PREFIX)/include' >> $(.OBJDIR)/dvdread.pc
+	@echo >> $(.OBJDIR)/dvdread.pc
+	@echo 'Libs: -L$${libdir} -ldvdread' >> $(.OBJDIR)/dvdread.pc
+	@echo 'Cflags: -I$${includedir}' >> $(.OBJDIR)/dvdread.pc
+	@echo >> $(.OBJDIR)/dvdread.pc
+	@echo 'Name: dvdread' >> $(.OBJDIR)/dvdread.pc
+	@echo 'Description: Library for reading DVDs' >> $(.OBJDIR)/dvdread.pc
+	@echo 'Version: $(SHLIB_VERSION)' >> $(.OBJDIR)/dvdread.pc
+
+install-dvdread.pc: dvdread.pc
+	install -d $(DESTDIR)$(shlibdir)/pkgconfig
+	install -m 0644 $(.OBJDIR)/dvdread.pc $(DESTDIR)$(shlibdir)/pkgconfig/dvdread.pc
 
 vpath %.so ${.OBJDIR}
 vpath %.o ${.OBJDIR}

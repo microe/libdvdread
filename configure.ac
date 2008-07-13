@@ -203,6 +203,7 @@ Makefile
 src/Makefile
 misc/Makefile
 misc/dvdread-config
+misc/dvdread.pc
 misc/libdvdread.spec
 misc/relchk.sh
 m4/Makefile

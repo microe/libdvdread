@@ -21,7 +21,7 @@
 #define IFO_PRINT_H_INCLUDED
 
 #include <inttypes.h>
-#  include "ifo_types.h"
+#include "ifo_types.h"
 
 void ifo_print(dvd_reader_t *dvd, int title);
 

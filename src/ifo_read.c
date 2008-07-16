@@ -276,6 +276,15 @@ static void read_playback_type(playback_type_t *pt) {
   pt->title_or_time_play              = dvdread_getbits(&state, 1);
 }
 
+static void free_ptl_mait(ptl_mait_t* ptl_mait, int num_entries) {
+  int i;
+  for (i = 0; i < num_entries; i++)
+    free(ptl_mait->countries[i].pf_ptl_mai);
+
+  free(ptl_mait->countries);
+  free(ptl_mait);
+}
+
 ifo_handle_t *ifoOpen(dvd_reader_t *dvd, int title) {
   ifo_handle_t *ifofile;
 
@@ -1299,21 +1308,13 @@ int ifoRead_PTL_MAIT(ifo_handle_t *ifofile) {
     info_length = (ptl_mait->nr_of_vtss + 1) * sizeof(pf_level_t);
     pf_temp = (uint16_t *)malloc(info_length);
     if(!pf_temp) {
-      for(j = 0; j < i ; j++) {
-         free(ptl_mait->countries[j].pf_ptl_mai);
-      }
-      free(ptl_mait->countries);
-      free(ptl_mait);
+      free_ptl_mait(ptl_mait, i);
       return 0;
     }
     if(!(DVDReadBytes(ifofile->file, pf_temp, info_length))) {
        fprintf(stderr, "libdvdread: Unable to read PTL_MAIT table.\n");
        free(pf_temp);
-       for(j = 0; j < i ; j++) {
-	  free(ptl_mait->countries[j].pf_ptl_mai);
-       }
-       free(ptl_mait->countries);
-       free(ptl_mait);
+       free_ptl_mait(ptl_mait, i);
        return 0;
     }
     for (j = 0; j < ((ptl_mait->nr_of_vtss + 1) * 8); j++) {
@@ -1322,11 +1323,7 @@ int ifoRead_PTL_MAIT(ifo_handle_t *ifofile) {
     ptl_mait->countries[i].pf_ptl_mai = (pf_level_t *)malloc(info_length);
     if(!ptl_mait->countries[i].pf_ptl_mai) {
       free(pf_temp);
-      for(j = 0; j < i ; j++) {
-	free(ptl_mait->countries[j].pf_ptl_mai);
-      }
-      free(ptl_mait->countries);
-      free(ptl_mait);
+      free_ptl_mait(ptl_mait, i);
       return 0;
     }
     { /* Transpose the array so we can use C indexing. */

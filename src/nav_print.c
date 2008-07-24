@@ -32,33 +32,6 @@
 #include "nav_print.h"
 #include "dvdread_internal.h"
 
-static void print_time(dvd_time_t *dtime) {
-  const char *rate;
-  CHECK_VALUE((dtime->hour>>4) < 0xa && (dtime->hour&0xf) < 0xa);
-  CHECK_VALUE((dtime->minute>>4) < 0x7 && (dtime->minute&0xf) < 0xa);
-  CHECK_VALUE((dtime->second>>4) < 0x7 && (dtime->second&0xf) < 0xa);
-  CHECK_VALUE((dtime->frame_u&0xf) < 0xa);
-  
-  printf("%02x:%02x:%02x.%02x", 
-	 dtime->hour,
-	 dtime->minute,
-	 dtime->second,
-	 dtime->frame_u & 0x3f);
-  switch((dtime->frame_u & 0xc0) >> 6) {
-  case 1:
-    rate = "25.00";
-    break;
-  case 3:
-    rate = "29.97";
-    break;
-  default:
-    rate = "(please send a bug report)";
-    break;
-  } 
-  printf(" @ %s fps", rate);
-}
-
-
 static void navPrint_PCI_GI(pci_gi_t *pci_gi) {
   int i;
 
@@ -70,7 +43,7 @@ static void navPrint_PCI_GI(pci_gi_t *pci_gi) {
   printf("vobu_e_ptm    0x%08x\n", pci_gi->vobu_e_ptm);
   printf("vobu_se_e_ptm 0x%08x\n", pci_gi->vobu_se_e_ptm);
   printf("e_eltm        ");
-  print_time(&pci_gi->e_eltm);
+  dvdread_print_time(&pci_gi->e_eltm);
   printf("\n");
   
   printf("vobu_isrc     \"");
@@ -201,7 +174,7 @@ static void navPrint_DSI_GI(dsi_gi_t *dsi_gi) {
   printf("vobu_vob_idn   0x%04x\n", dsi_gi->vobu_vob_idn);
   printf("vobu_c_idn     0x%02x\n", dsi_gi->vobu_c_idn);
   printf("c_eltm         ");
-  print_time(&dsi_gi->c_eltm);
+  dvdread_print_time(&dsi_gi->c_eltm);
   printf("\n");
 }
 

@@ -60,6 +60,10 @@ static void ifo_print_time(int level, dvd_time_t *dtime) {
   printf(" @ %s fps", rate);
 }
 
+void dvdread_print_time(dvd_time_t *dtime) {
+  ifo_print_time(5, dtime);
+}
+
 /* Put this in some other file / package?  It's used in nav_print too.
    Possibly also by the vm / navigator. */
 static void ifo_print_cmd(int row, vm_cmd_t *command) {
@@ -655,7 +659,7 @@ static void ifo_print_CELL_PLAYBACK(cell_playback_t *cell_playback, int nr) {
   for(i=0;i<nr;i++) {
     printf("Cell: %3i ", i + 1);
 
-    ifo_print_time(5, &cell_playback[i].playback_time);
+    dvdread_print_time(&cell_playback[i].playback_time);
     printf("\t");
 
     if(cell_playback[i].block_mode || cell_playback[i].block_type) {
@@ -740,7 +744,7 @@ void ifo_print_PGC(pgc_t *pgc) {
   printf("Number of Cells: %i\n", pgc->nr_of_cells);
   /* Check that time is 0:0:0:0 also if nr_of_programs==0 */
   printf("Playback time: ");
-  ifo_print_time(5, &pgc->playback_time); printf("\n");
+  dvdread_print_time(&pgc->playback_time); printf("\n");
 
   /* If no programs/no time then does this mean anything? */
   printf("Prohibited user operations: ");

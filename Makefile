@@ -1,5 +1,3 @@
-# libdvdnav Makefile
-
 include config.mak
 
 .SUFFIXES: .so

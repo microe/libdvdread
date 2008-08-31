@@ -47,12 +47,12 @@ DVDREAD_DEPS= ${DVDREAD_OBJS:%.o=%.d}
 BUILDDEPS = Makefile config.mak
 
 ifeq ($(BUILD_SHARED),yes)
-all:	$(SHLIB) $(DVDREAD_SHLIB) dvdread-config
+all:	$(SHLIB) $(DVDREAD_SHLIB) dvdread-config pkgconfig
 install: $(SHLIB) $(DVDREAD_SHLIB) install-shared install-dvdread-config install-pkgconfig
 endif
 
 ifeq ($(BUILD_STATIC),yes)
-all:	$(LIB) $(DVDREAD_LIB) dvdread-config
+all:	$(LIB) $(DVDREAD_LIB) dvdread-config pkgconfig
 install: $(LIB) $(DVDREAD_LIB) install-static install-dvdread-config install-pkgconfig
 endif
 

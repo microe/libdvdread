@@ -141,6 +141,7 @@ EOF
 if test "$source_path_used" != "no"; then
     FILES="\
           Makefile \
+          misc \
           "
     for f in $FILES ; do
         ln -sf "$source_path/$f" $f

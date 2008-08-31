@@ -148,6 +148,8 @@ if test "$source_path_used" != "no"; then
     done
 fi
 
+[ -d obj ] || mkdir -p obj
+
 echo
 echo "Done, type 'make install' to build and install"
 

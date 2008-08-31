@@ -73,14 +73,11 @@ $(SRCS) $(DVDREAD_SRCS): version.h
 
 # General targets
 
-$(.OBJDIR):
-	mkdir $(.OBJDIR)
-
-${DVDREAD_LIB}: version.h $(.OBJDIR) $(DVDREAD_OBJS) $(BUILDDEPS)
+${DVDREAD_LIB}: version.h $(DVDREAD_OBJS) $(BUILDDEPS)
 	cd $(.OBJDIR) && $(AR) rc $@ $(DVDREAD_OBJS)
 	cd $(.OBJDIR) && $(RANLIB) $@
 
-${DVDREAD_SHLIB}: version.h $(.OBJDIR) $(DVDREAD_SHOBJS) $(BUILDDEPS)
+${DVDREAD_SHLIB}: version.h $(DVDREAD_SHOBJS) $(BUILDDEPS)
 	cd $(.OBJDIR) && $(CC) $(SHLDFLAGS) $(LDFLAGS) -ldl -Wl,-soname=$(DVDREAD_SHLIB).$(SHLIB_MAJOR) -o $@ $(DVDREAD_SHOBJS)
 
 .c.so:	$(BUILDDEPS)
@@ -124,14 +121,15 @@ install-static: $(LIB)
 # Clean targets
 
 clean:
-	rm -rf  *~ $(.OBJDIR) version.h
+	rm -rf  *~ $(.OBJDIR)/* version.h
 
 
 distclean: clean
 	find . -name "*~" | xargs rm -rf
-	rm -rf config.mak
+	rm -rf config.mak $(.OBJDIR)
 
-dvdread-config: $(.OBJDIR)
+dvdread-config: $(.OBJDIR)/dvdread-config
+$(.OBJDIR)/dvdread-config: $(BUILDDEPS)
 	@echo '#!/bin/sh' > $(.OBJDIR)/dvdread-config
 	@echo 'prefix='$(PREFIX) >> $(.OBJDIR)/dvdread-config
 	@echo 'libdir='$(shlibdir) >> $(.OBJDIR)/dvdread-config
@@ -152,7 +150,7 @@ pcedit = sed \
 	-e 's,@VERSION@,$(SHLIB_VERSION),'
 
 pkgconfig: $(.OBJDIR)/dvdread.pc
-$(.OBJDIR)/dvdread.pc: misc/dvdread.pc.in $(.OBJDIR)
+$(.OBJDIR)/dvdread.pc: misc/dvdread.pc.in $(BUILDDEPS)
 	$(pcedit) $< > $@
 
 install-pkgconfig: $(.OBJDIR)/dvdread.pc

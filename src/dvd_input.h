@@ -30,7 +30,8 @@
 typedef struct dvd_input_s *dvd_input_t;
 
 /**
- * Pointers which will be filled either the input methods functions.
+ * Function pointers that will be filled in by the input implementation.
+ * These functions provide the main API.
  */
 extern dvd_input_t (*dvdinput_open)  (const char *);
 extern int         (*dvdinput_close) (dvd_input_t);

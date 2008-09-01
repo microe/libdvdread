@@ -117,7 +117,7 @@ static int css_seek(dvd_input_t dev, int blocks)
 }
 
 /**
- * set the block for the begining of a new title (key).
+ * set the block for the beginning of a new title (key).
  */
 static int css_title(dvd_input_t dev, int block)
 {
@@ -208,7 +208,7 @@ static int file_seek(dvd_input_t dev, int blocks)
 }
 
 /**
- * set the block for the begining of a new title (key).
+ * set the block for the beginning of a new title (key).
  */
 static int file_title(dvd_input_t dev, int block)
 {
@@ -231,14 +231,14 @@ static int file_read(dvd_input_t dev, void *buffer, int blocks, int flags)
     
     if(ret < 0) {
       /* One of the reads failed, too bad.  We won't even bother
-       * returning the reads that went ok, and as in the posix spec
-       * the file postition is left unspecified after a failure. */
+       * returning the reads that went OK, and as in the POSIX spec
+       * the file position is left unspecified after a failure. */
       return ret;
     }
     
     if(ret == 0) {
-      /* Nothing more to read.  Return the whole blocks, if any, that we got.
-	 and adjust the file possition back to the previous block boundary. */
+      /* Nothing more to read.  Return all of the whole blocks, if any.
+       * Adjust the file position back to the previous block boundary. */
       size_t bytes = (size_t)blocks * DVD_VIDEO_LB_LEN - len;
       off_t over_read = -(bytes % DVD_VIDEO_LB_LEN);
       /*off_t pos =*/ lseek(dev->fd, over_read, SEEK_CUR);

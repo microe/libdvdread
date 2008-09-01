@@ -149,11 +149,6 @@ static int css_close(dvd_input_t dev)
   return 0;
 }
 
-
-
-
-
-
 /**
  * initialize and open a DVD device or file.
  */

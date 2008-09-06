@@ -36,7 +36,7 @@ extern "C" {
  * @param pci Pointer to the PCI data structure to be printed.
  */
 void navPrint_PCI(pci_t *);
-  
+
 /**
  * Prints information contained in the DSI to stdout.
  *

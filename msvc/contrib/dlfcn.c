@@ -1,7 +1,7 @@
 /*
  * $Id$
  * $Name$
- * 
+ *
  * Adopted from Apache DSO code.
  * Portions copyright Apache Software Foundation
  *
@@ -32,14 +32,14 @@ void *dlopen(const char *module_name, int mode)
     p = path;
     while (p = strchr(p, '/'))
         *p = '\\';
-    
-    /* First assume the dso/dll's required by -this- dso are sitting in the 
+
+    /* First assume the dso/dll's required by -this- dso are sitting in the
      * same path or can be found in the usual places.  Failing that, let's
      * let that dso look in the apache root.
      */
     em = SetErrorMode(SEM_FAILCRITICALERRORS);
     dsoh = LoadLibraryEx(path, NULL, LOAD_WITH_ALTERED_SEARCH_PATH);
-    if (!dsoh) 
+    if (!dsoh)
     {
         SetLastError(0); // clear the last error
         dsoh = LoadLibraryEx(path, NULL, 0);
@@ -57,23 +57,23 @@ char *dlerror(void)
      * mostly a potential problem for isapi modules, since LoadModule
      * errors are handled within a single config thread.
      */
-    
+
     if((nErrorCode = GetLastError()) == 0)
       return((char *)0);
 
     SetLastError(0); // clear the last error
     len = snprintf(errstr, sizeof(errstr), "(%d) ", nErrorCode);
 
-    len += FormatMessage( 
+    len += FormatMessage(
             FORMAT_MESSAGE_FROM_SYSTEM,
             NULL,
             nErrorCode,
             MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), /* Default language */
             (LPTSTR) errstr + len,
             sizeof(errstr) - len,
-            NULL 
+            NULL
         );
-        /* FormatMessage may have appended a newline (\r\n). So remove it 
+        /* FormatMessage may have appended a newline (\r\n). So remove it
          * and use ": " instead like the Unix errors. The error may also
          * end with a . before the return - if so, trash it.
          */

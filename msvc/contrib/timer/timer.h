@@ -10,7 +10,7 @@
 
 //	time reference
 //	----------------------------------
-//	
+//
 //	1,000			milliseconds / sec
 //	1,000,000		microseconds / sec
 //	1,000,000,000	nanoseconds  / sec

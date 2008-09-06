@@ -9,7 +9,7 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -36,7 +36,7 @@ typedef struct dvd_input_s *dvd_input_t;
 extern dvd_input_t (*dvdinput_open)  (const char *);
 extern int         (*dvdinput_close) (dvd_input_t);
 extern int         (*dvdinput_seek)  (dvd_input_t, int);
-extern int         (*dvdinput_title) (dvd_input_t, int); 
+extern int         (*dvdinput_title) (dvd_input_t, int);
 extern int         (*dvdinput_read)  (dvd_input_t, void *, int, int);
 extern char *      (*dvdinput_error) (dvd_input_t);
 

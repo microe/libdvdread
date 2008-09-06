@@ -1,5 +1,5 @@
 /* This is the POSIX thread API (POSIX 1003).
- * 
+ *
  * Pthreads-win32 - POSIX Threads Library for Win32
  * Copyright (C) 1998
  *
@@ -131,7 +131,7 @@ struct timespec {
 #define SIG_BLOCK 0
 #endif /* SIG_BLOCK */
 
-#ifndef SIG_UNBLOCK 
+#ifndef SIG_UNBLOCK
 #define SIG_UNBLOCK 1
 #endif /* SIG_UNBLOCK */
 
@@ -492,7 +492,7 @@ enum
  * C++ and C built versions will not.
  */
 
-/* 
+/*
  * define defaults for cleanup code
  */
 #if !defined( __CLEANUP_SEH ) && !defined( __CLEANUP_CXX ) && !defined( __CLEANUP_C )
@@ -875,7 +875,7 @@ int pthread_getschedparam (pthread_t thread,
 			   struct sched_param *param);
 
 int pthread_setconcurrency (int);
- 
+
 int pthread_getconcurrency (void);
 
 /*

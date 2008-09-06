@@ -3,7 +3,7 @@
  *
  * Purpose:
  *      Provides an implementation of POSIX realtime extensions
- *      as defined in 
+ *      as defined in
  *
  *              POSIX 1003.1b-1993      (POSIX.1b)
  *

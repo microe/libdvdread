@@ -136,7 +136,7 @@ int ifoRead_PGCIT(ifo_handle_t *);
  * VTSI files, this fills the ifofile->vtsm_pgci_ut structure.
  */
 int ifoRead_PGCI_UT(ifo_handle_t *);
-  
+
 /**
  * okay = ifoRead_VTS_TMAPT(ifofile);
  *
@@ -146,7 +146,7 @@ int ifoRead_PGCI_UT(ifo_handle_t *);
  * seeking for One_Sequential_PGC_Titles.
  */
 int ifoRead_VTS_TMAPT(ifo_handle_t *);
-  
+
 /**
  * okay = ifoRead_C_ADT(ifofile);
  *

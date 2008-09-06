@@ -23,12 +23,12 @@
 #include <config.h>
 
 #if defined(WORDS_BIGENDIAN)
-/* All bigendian systems are fine, just ignore the swaps. */  
+/* All bigendian systems are fine, just ignore the swaps. */
 #define B2N_16(x) (void)(x)
 #define B2N_32(x) (void)(x)
 #define B2N_64(x) (void)(x)
 
-#else 
+#else
 
 /* For __FreeBSD_version */
 #if defined(HAVE_SYS_PARAM_H)
@@ -65,10 +65,10 @@
 #define B2N_32(x) x = be32toh(x)
 #define B2N_64(x) x = be64toh(x)
 
-/* This is a slow but portable implementation, it has multiple evaluation 
+/* This is a slow but portable implementation, it has multiple evaluation
  * problems so beware.
- * Old FreeBSD's and Solaris don't have <byteswap.h> or any other such 
- * functionality! 
+ * Old FreeBSD's and Solaris don't have <byteswap.h> or any other such
+ * functionality!
  */
 
 #elif defined(__FreeBSD__) || defined(__sun) || defined(__bsdi__) || defined(WIN32) || defined(__CYGWIN__) || defined(__BEOS__)

@@ -1,18 +1,18 @@
-/* 
+/*
  * Copyright (C) 2000-2001 the xine project
- * 
+ *
  * This file is part of xine, a unix video player.
- * 
+ *
  * xine is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * xine is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
@@ -46,7 +46,7 @@ int gettimeofday( struct timeval *tp, struct timezone *tzp )
 	if( !startseconds )
 		startseconds = time( 0 );
 
-	timeGetSystemTime( &mmtime, sizeof( mmtime ) );      
+	timeGetSystemTime( &mmtime, sizeof( mmtime ) );
 
 	tp->tv_sec	= ( mmtime.u.ms / 1000 ) + startseconds;
 	tp->tv_usec	= ( mmtime.u.ms % 1000 ) * 1000;
@@ -56,7 +56,7 @@ int gettimeofday( struct timeval *tp, struct timezone *tzp )
 
 /*
 	These functions are designed to mimick
-	a subset of itimer for use with the 
+	a subset of itimer for use with the
 	alarm signal on win32. This is just
 	enough for xine to work.
 */
@@ -66,7 +66,7 @@ static HANDLE sigalarm = 0;
 int setitimer( int which, struct itimerval * value, struct itimerval *ovalue )
 {
 	long int miliseconds;
-		
+
 	if( !sigalarm )
 		sigalarm = CreateEvent( 0, FALSE, TRUE, "SIGALARM" );
 

@@ -3,7 +3,7 @@
 /*
  * $Id$
  * $Name$
- * 
+ *
  *
  */
 extern void *dlopen  (const char *file, int mode);

@@ -10,24 +10,24 @@
  * Copyright (C) 1999 Christian Wolff for convergence integrated media
  * GmbH The author can be reached at scarabaeus@convergence.de, the
  * project's page is at http://linuxtv.org/dvd/
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
  * 02111-1307, USA.  Or, point your browser to
  * http://www.gnu.org/copyleft/gpl.html
  */
- 
+
 #include "config.h"
 
 #include <stdio.h>
@@ -44,12 +44,12 @@
 
 /* Private but located in/shared with dvd_reader.c */
 extern int UDFReadBlocksRaw( dvd_reader_t *device, uint32_t lb_number,
-				size_t block_count, unsigned char *data, 
+				size_t block_count, unsigned char *data,
 				int encrypted );
 
 /* It's required to either fail or deliver all the blocks asked for. */
 static int DVDReadLBUDF( dvd_reader_t *device, uint32_t lb_number,
-			 size_t block_count, unsigned char *data, 
+			 size_t block_count, unsigned char *data,
 			 int encrypted )
 {
   int ret;
@@ -234,7 +234,7 @@ static int SetUDFCache(dvd_reader_t *device, UDFCacheType type,
   c = (struct udf_cache *)GetUDFCacheHandle(device);
 
   if(c == NULL) {
-    c = calloc(1, sizeof(struct udf_cache));    
+    c = calloc(1, sizeof(struct udf_cache));
     /* fprintf(stderr, "calloc: %d\n", sizeof(struct udf_cache)); */
     if(c == NULL)
       return 0;
@@ -244,19 +244,19 @@ static int SetUDFCache(dvd_reader_t *device, UDFCacheType type,
 
   switch(type) {
   case AVDPCache:
-    c->avdp = *(struct avdp_t *)data; 
+    c->avdp = *(struct avdp_t *)data;
     c->avdp_valid = 1;
     break;
   case PVDCache:
-    c->pvd = *(struct pvd_t *)data; 
+    c->pvd = *(struct pvd_t *)data;
     c->pvd_valid = 1;
     break;
   case PartitionCache:
-    c->partition = *(struct Partition *)data; 
+    c->partition = *(struct Partition *)data;
     c->partition_valid = 1;
     break;
   case RootICBCache:
-    c->rooticb = *(struct AD *)data; 
+    c->rooticb = *(struct AD *)data;
     c->rooticb_valid = 1;
     break;
   case LBUDFCache:
@@ -331,7 +331,7 @@ static int SetUDFCache(dvd_reader_t *device, UDFCacheType type,
 /* This is wrong with regard to endianess */
 #define GETN(p, n, target) memcpy(target, &data[p], n)
 
-static int Unicodedecode( uint8_t *data, int len, char *target ) 
+static int Unicodedecode( uint8_t *data, int len, char *target )
 {
     int p = 1, i = 0;
 
@@ -346,22 +346,22 @@ static int Unicodedecode( uint8_t *data, int len, char *target )
     return 0;
 }
 
-static int UDFDescriptor( uint8_t *data, uint16_t *TagID ) 
+static int UDFDescriptor( uint8_t *data, uint16_t *TagID )
 {
     *TagID = GETN2(0);
     /* TODO: check CRC 'n stuff */
     return 0;
 }
 
-static int UDFExtentAD( uint8_t *data, uint32_t *Length, uint32_t *Location ) 
+static int UDFExtentAD( uint8_t *data, uint32_t *Length, uint32_t *Location )
 {
     *Length   = GETN4(0);
     *Location = GETN4(4);
     return 0;
 }
 
-static int UDFShortAD( uint8_t *data, struct AD *ad, 
-		       struct Partition *partition ) 
+static int UDFShortAD( uint8_t *data, struct AD *ad,
+		       struct Partition *partition )
 {
     ad->Length = GETN4(0);
     ad->Flags = ad->Length >> 30;
@@ -427,7 +427,7 @@ static int UDFLogVolume( uint8_t *data, char *VolumeDescriptor )
     return 0;
 }
 
-static int UDFFileEntry( uint8_t *data, uint8_t *FileType, 
+static int UDFFileEntry( uint8_t *data, uint8_t *FileType,
 			 struct Partition *partition, struct AD *ad )
 {
     uint16_t flags;
@@ -488,7 +488,7 @@ static int UDFFileIdentifier( uint8_t *data, uint8_t *FileCharacteristics,
  * return 1 on success, 0 on error;
  */
 static int UDFMapICB( dvd_reader_t *device, struct AD ICB, uint8_t *FileType,
-		      struct Partition *partition, struct AD *File ) 
+		      struct Partition *partition, struct AD *File )
 {
     uint8_t LogBlock_base[DVD_VIDEO_LB_LEN + 2048];
     uint8_t *LogBlock = (uint8_t *)(((uintptr_t)LogBlock_base & ~((uintptr_t)2047)) + 2048);
@@ -531,7 +531,7 @@ static int UDFMapICB( dvd_reader_t *device, struct AD ICB, uint8_t *FileType,
  */
 static int UDFScanDir( dvd_reader_t *device, struct AD Dir, char *FileName,
                        struct Partition *partition, struct AD *FileICB,
-		       int cache_file_info) 
+		       int cache_file_info)
 {
     char filename[ MAX_UDF_FILE_NAME_LEN ];
     uint8_t directory_base[ 2 * DVD_VIDEO_LB_LEN + 2048];
@@ -649,7 +649,7 @@ static int UDFGetAVDP( dvd_reader_t *device,
   uint16_t TagID;
   uint32_t lastsector;
   int terminate;
-  struct avdp_t; 
+  struct avdp_t;
 
   if(GetUDFCache(device, AVDPCache, 0, avdp))
     return 1;
@@ -710,7 +710,7 @@ static int UDFGetAVDP( dvd_reader_t *device,
  *   part: structure to fill with the partition information
  */
 static int UDFFindPartition( dvd_reader_t *device, int partnum,
-			     struct Partition *part ) 
+			     struct Partition *part )
 {
     uint8_t LogBlock_base[ DVD_VIDEO_LB_LEN + 2048 ];
     uint8_t *LogBlock = (uint8_t *)(((uintptr_t)LogBlock_base & ~((uintptr_t)2047)) + 2048);
@@ -851,7 +851,7 @@ uint32_t UDFFindFile( dvd_reader_t *device, char *filename,
  * bufsize, size of BlockBuf (must be >= DVD_VIDEO_LB_LEN).
  */
 static int UDFGetDescriptor( dvd_reader_t *device, int id,
-			     uint8_t *descriptor, int bufsize) 
+			     uint8_t *descriptor, int bufsize)
 {
   uint32_t lbnum, MVDS_location, MVDS_length;
   struct avdp_t avdp;
@@ -945,7 +945,7 @@ int UDFGetVolumeIdentifier(dvd_reader_t *device, char *volid,
  * Gets the Volume Set Identifier, as a 128-byte dstring (not decoded)
  * WARNING This is not a null terminated string
  * volsetid, place to put the data
- * volsetid_size, size of the buffer volsetid points to 
+ * volsetid_size, size of the buffer volsetid points to
  * the buffer should be >=128 bytes to store the whole volumesetidentifier
  * returns the size of the available volsetid information (128)
  * or 0 on error

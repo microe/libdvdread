@@ -3,8 +3,8 @@
 /*
  * $Id$
  * $Name$
- * 
- * win32 types 
+ *
+ * win32 types
  * 04 Sept 2001 - Chris Wolf create.
  */
 

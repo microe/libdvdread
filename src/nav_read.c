@@ -44,7 +44,7 @@ void navRead_PCI(pci_t *pci, unsigned char *buffer) {
   pci->pci_gi.vobu_uop_ctl.zero = getbits(&state, 7 );
   pci->pci_gi.vobu_uop_ctl.video_pres_mode_change         = getbits(&state, 1 );
 
-  pci->pci_gi.vobu_uop_ctl.karaoke_audio_pres_mode_change = getbits(&state, 1 ); 
+  pci->pci_gi.vobu_uop_ctl.karaoke_audio_pres_mode_change = getbits(&state, 1 );
   pci->pci_gi.vobu_uop_ctl.angle_change                   = getbits(&state, 1 );
   pci->pci_gi.vobu_uop_ctl.subpic_stream_change           = getbits(&state, 1 );
   pci->pci_gi.vobu_uop_ctl.audio_stream_change            = getbits(&state, 1 );
@@ -53,7 +53,7 @@ void navRead_PCI(pci_t *pci, unsigned char *buffer) {
   pci->pci_gi.vobu_uop_ctl.button_select_or_activate      = getbits(&state, 1 );
   pci->pci_gi.vobu_uop_ctl.resume                         = getbits(&state, 1 );
 
-  pci->pci_gi.vobu_uop_ctl.chapter_menu_call              = getbits(&state, 1 ); 
+  pci->pci_gi.vobu_uop_ctl.chapter_menu_call              = getbits(&state, 1 );
   pci->pci_gi.vobu_uop_ctl.angle_menu_call                = getbits(&state, 1 );
   pci->pci_gi.vobu_uop_ctl.audio_menu_call                = getbits(&state, 1 );
   pci->pci_gi.vobu_uop_ctl.subpic_menu_call               = getbits(&state, 1 );
@@ -62,7 +62,7 @@ void navRead_PCI(pci_t *pci, unsigned char *buffer) {
   pci->pci_gi.vobu_uop_ctl.backward_scan                  = getbits(&state, 1 );
   pci->pci_gi.vobu_uop_ctl.forward_scan                   = getbits(&state, 1 );
 
-  pci->pci_gi.vobu_uop_ctl.next_pg_search                 = getbits(&state, 1 ); 
+  pci->pci_gi.vobu_uop_ctl.next_pg_search                 = getbits(&state, 1 );
   pci->pci_gi.vobu_uop_ctl.prev_or_top_pg_search          = getbits(&state, 1 );
   pci->pci_gi.vobu_uop_ctl.time_or_chapter_search         = getbits(&state, 1 );
   pci->pci_gi.vobu_uop_ctl.go_up                          = getbits(&state, 1 );
@@ -70,9 +70,9 @@ void navRead_PCI(pci_t *pci, unsigned char *buffer) {
   pci->pci_gi.vobu_uop_ctl.title_play                     = getbits(&state, 1 );
   pci->pci_gi.vobu_uop_ctl.chapter_search_or_play         = getbits(&state, 1 );
   pci->pci_gi.vobu_uop_ctl.title_or_time_play             = getbits(&state, 1 );
-  pci->pci_gi.vobu_s_ptm = getbits(&state, 32 ); 
-  pci->pci_gi.vobu_e_ptm = getbits(&state, 32 ); 
-  pci->pci_gi.vobu_se_e_ptm = getbits(&state, 32 ); 
+  pci->pci_gi.vobu_s_ptm = getbits(&state, 32 );
+  pci->pci_gi.vobu_e_ptm = getbits(&state, 32 );
+  pci->pci_gi.vobu_se_e_ptm = getbits(&state, 32 );
   pci->pci_gi.e_eltm.hour   = getbits(&state, 8 );
   pci->pci_gi.e_eltm.minute = getbits(&state, 8 );
   pci->pci_gi.e_eltm.second = getbits(&state, 8 );
@@ -86,7 +86,7 @@ void navRead_PCI(pci_t *pci, unsigned char *buffer) {
 
   /* pci hli hli_gi */
   pci->hli.hl_gi.hli_ss = getbits(&state, 16 );
-  pci->hli.hl_gi.hli_s_ptm = getbits(&state, 32 ); 
+  pci->hli.hl_gi.hli_s_ptm = getbits(&state, 32 );
   pci->hli.hl_gi.hli_e_ptm = getbits(&state, 32 );
   pci->hli.hl_gi.btn_se_e_ptm = getbits(&state, 32 );
   pci->hli.hl_gi.zero1 = getbits(&state, 2 );
@@ -99,7 +99,7 @@ void navRead_PCI(pci_t *pci, unsigned char *buffer) {
   pci->hli.hl_gi.btngr3_dsp_ty = getbits(&state, 3 );
   pci->hli.hl_gi.btn_ofn = getbits(&state, 8 );
   pci->hli.hl_gi.btn_ns = getbits(&state, 8 );
-  pci->hli.hl_gi.nsl_btn_ns = getbits(&state, 8 ); 
+  pci->hli.hl_gi.nsl_btn_ns = getbits(&state, 8 );
   pci->hli.hl_gi.zero5 = getbits(&state, 8 );
   pci->hli.hl_gi.fosl_btnn = getbits(&state, 8 );
   pci->hli.hl_gi.foac_btnn = getbits(&state, 8 );
@@ -107,11 +107,11 @@ void navRead_PCI(pci_t *pci, unsigned char *buffer) {
   /* pci hli btn_colit */
   for(i = 0; i < 3; i++)
     for(j = 0; j < 2; j++)
-      pci->hli.btn_colit.btn_coli[i][j] = getbits(&state, 32 ); 
+      pci->hli.btn_colit.btn_coli[i][j] = getbits(&state, 32 );
 
   /* NOTE: I've had to change the structure from the disk layout to get
    * the packing to work with Sun's Forte C compiler. */
-  
+
   /* pci hli btni */
   for(i = 0; i < 36; i++) {
     pci->hli.btnit[i].btn_coln = getbits(&state, 2 );
@@ -142,7 +142,7 @@ void navRead_PCI(pci_t *pci, unsigned char *buffer) {
 #ifndef NDEBUG
   /* Asserts */
 
-  /* pci pci gi */ 
+  /* pci pci gi */
   CHECK_VALUE(pci->pci_gi.zero1 == 0);
 
   /* pci hli hli_gi */
@@ -154,10 +154,10 @@ void navRead_PCI(pci_t *pci, unsigned char *buffer) {
 
   /* Are there buttons defined here? */
   if((pci->hli.hl_gi.hli_ss & 0x03) != 0) {
-    CHECK_VALUE(pci->hli.hl_gi.btn_ns != 0); 
-    CHECK_VALUE(pci->hli.hl_gi.btngr_ns != 0); 
+    CHECK_VALUE(pci->hli.hl_gi.btn_ns != 0);
+    CHECK_VALUE(pci->hli.hl_gi.btngr_ns != 0);
   } else {
-    CHECK_VALUE((pci->hli.hl_gi.btn_ns != 0 && pci->hli.hl_gi.btngr_ns != 0) 
+    CHECK_VALUE((pci->hli.hl_gi.btn_ns != 0 && pci->hli.hl_gi.btngr_ns != 0)
 	   || (pci->hli.hl_gi.btn_ns == 0 && pci->hli.hl_gi.btngr_ns == 0));
   }
 
@@ -171,8 +171,8 @@ void navRead_PCI(pci_t *pci, unsigned char *buffer) {
       CHECK_VALUE(pci->hli.btnit[n].zero4 == 0);
       CHECK_VALUE(pci->hli.btnit[n].zero5 == 0);
       CHECK_VALUE(pci->hli.btnit[n].zero6 == 0);
-      
-      if (j < pci->hli.hl_gi.btn_ns) {	
+
+      if (j < pci->hli.hl_gi.btn_ns) {
 	CHECK_VALUE(pci->hli.btnit[n].x_start <= pci->hli.btnit[n].x_end);
 	CHECK_VALUE(pci->hli.btnit[n].y_start <= pci->hli.btnit[n].y_end);
 	CHECK_VALUE(pci->hli.btnit[n].up <= pci->hli.hl_gi.btn_ns);
@@ -256,7 +256,7 @@ void navRead_DSI(dsi_t *dsi, unsigned char *buffer) {
   for(i = 0; i < 32; i++)
     dsi->synci.sp_synca[i] = getbits(&state, 32 );
 
-  
+
   /* Asserts */
 
   /* dsi dsi gi */

@@ -2,6 +2,7 @@ libdvdread (4.1.3)
   * an embarassing amount of fixes regarding potential memory and resource leaks
     (patches contributed by Erik Hovland)
   * added dvdread-config (dvdnav-config's younger brother)
+  * added pkgconfig support
   * split dvdread to a separate tree
 
 libdvdnav (4.1.2)

@@ -1,7 +1,5 @@
 #!/bin/sh
 #
-# $Id$
-#
 # run this to generate all the initial makefiles, etc.
 
 srcdir=`dirname "$0"`

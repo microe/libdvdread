@@ -14,9 +14,6 @@
  * You should have received a copy of the GNU General Public License along
  * with libdvdread; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- *
- * $Id$
- *
  */
 
 #ifndef LIBDVDREAD_IFO_PRINT_H
@@ -29,27 +26,3 @@ void ifo_print(dvd_reader_t *dvd, int title);
 void dvdread_print_time(dvd_time_t *dtime);
 
 #endif /* LIBDVDREAD_IFO_PRINT_H */
-
-/*
- * $Log$
- * Revision 1.1  2004/01/11 21:43:13  mroi
- * big build system changes
- *  * cleaned up all Makefiles and added a Makefile.common
- *  * added relchk script
- *  * moved libdvdread files to a dvdread subdir
- *  * moved DVD VM to a vm subdir
- *  * removed unused code in read_cache.c
- *
- * Revision 1.4  2004/01/01 15:13:13  jcdutton
- * Put ifo_print.c and .h back in.
- *
- * Revision 1.2  2003/04/28 15:17:17  jcdutton
- * Update ifodump to work with new libdvdnav cvs, instead of needing libdvdread.
- *
- * Revision 1.1.1.1  2002/08/28 09:48:35  jcdutton
- * Initial import into CVS.
- *
- *
- *
- */
-

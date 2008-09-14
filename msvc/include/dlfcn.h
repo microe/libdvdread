@@ -1,11 +1,6 @@
 #ifndef __DLFCN_H__
 # define __DLFCN_H__
-/*
- * $Id$
- * $Name$
- *
- *
- */
+
 extern void *dlopen  (const char *file, int mode);
 extern int   dlclose (void *handle);
 extern void *dlsym   (void * handle, const char * name);

@@ -1,7 +1,4 @@
 /*
- * $Id$
- * $Name$
- *
  * Adopted from Apache DSO code.
  * Portions copyright Apache Software Foundation
  *

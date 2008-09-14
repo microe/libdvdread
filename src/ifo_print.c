@@ -14,9 +14,6 @@
  * You should have received a copy of the GNU General Public License along
  * with libdvdread; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- *
- * $Id$
- *
  */
 
 #include <stdio.h>
@@ -1206,48 +1203,3 @@ void ifo_print(dvd_reader_t *dvd, int title) {
 
   ifoClose(ifohandle);
 }
-
-/*
- * $Log$
- * Revision 1.3  2004/10/22 11:36:19  jcdutton
- * Stop seg fault when using ifo_dump.
- *
- * Revision 1.2  2004/09/27 12:24:01  jcdutton
- * Add extra info to printout when using ifo_dump.
- *
- * Revision 1.1  2004/01/11 21:43:13  mroi
- * big build system changes
- *  * cleaned up all Makefiles and added a Makefile.common
- *  * added relchk script
- *  * moved libdvdread files to a dvdread subdir
- *  * moved DVD VM to a vm subdir
- *  * removed unused code in read_cache.c
- *
- * Revision 1.4  2004/01/01 15:13:13  jcdutton
- * Put ifo_print.c and .h back in.
- *
- * Revision 1.7  2003/04/28 15:17:17  jcdutton
- * Update ifodump to work with new libdvdnav cvs, instead of needing libdvdread.
- *
- * Revision 1.6  2003/04/05 22:49:04  jcdutton
- * Update with more info from the latest libdvdread.
- *
- * Revision 1.5  2003/04/05 13:03:49  jcdutton
- * Small updates.
- *
- * Revision 1.4  2003/04/01 08:01:03  jcdutton
- * Add VTS Time map display. Requires libdvdread 0.9.4. The same version that comes with xine.
- *
- * Revision 1.3  2003/03/14 15:49:18  mroi
- * adjust to new libdvdread version
- *
- * Revision 1.2  2002/08/30 05:12:33  jcdutton
- * Minor update now that I know what PGC Entry IDs are for.
- *
- * Revision 1.1.1.1  2002/08/28 09:48:35  jcdutton
- * Initial import into CVS.
- *
- *
- *
- */
-

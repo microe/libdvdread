@@ -1,9 +1,6 @@
 #ifndef __OS_TYPES_H__
 #define __OS_TYPES_H__
 /*
- * $Id$
- * $Name$
- *
  * win32 types
  * 04 Sept 2001 - Chris Wolf create.
  */

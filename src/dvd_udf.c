@@ -4,7 +4,7 @@
  *
  * Modifications by:
  *   Billy Biggs <vektor@dumbterm.net>.
- *   Björn Englund <d4bjorn@dtek.chalmers.se>.
+ *   BjÃ¶rn Englund <d4bjorn@dtek.chalmers.se>.
  *
  * dvdudf: parse and read the UDF volume information of a DVD Video
  * Copyright (C) 1999 Christian Wolff for convergence integrated media

@@ -3,8 +3,8 @@
 
 /*
  * Copyright (C) 2001, 2002 Billy Biggs <vektor@dumbterm.net>,
- *                          Håkan Hjort <d95hjort@dtek.chalmers.se>,
- *                          Björn Englund <d4bjorn@dtek.chalmers.se>
+ *                          HÃ¥kan Hjort <d95hjort@dtek.chalmers.se>,
+ *                          BjÃ¶rn Englund <d4bjorn@dtek.chalmers.se>
  *
  * This file is part of libdvdread.
  *

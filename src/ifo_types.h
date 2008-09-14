@@ -2,8 +2,8 @@
 #define IFO_TYPES_H_INCLUDED
 
 /*
- * Copyright (C) 2000, 2001 Björn Englund <d4bjorn@dtek.chalmers.se>,
- *                          Håkan Hjort <d95hjort@dtek.chalmers.se>
+ * Copyright (C) 2000, 2001 BjÃ¶rn Englund <d4bjorn@dtek.chalmers.se>,
+ *                          HÃ¥kan Hjort <d95hjort@dtek.chalmers.se>
  *
  * This file is part of libdvdread.
  *

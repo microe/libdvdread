@@ -2,7 +2,7 @@
 #define NAV_TYPES_H_INCLUDED
 
 /*
- * Copyright (C) 2000, 2001, 2002 Håkan Hjort <d95hjort@dtek.chalmers.se>
+ * Copyright (C) 2000, 2001, 2002 HÃ¥kan Hjort <d95hjort@dtek.chalmers.se>
  *
  * The data structures in this file should represent the layout of the
  * pci and dsi packets as they are stored in the stream.  Information

@@ -3,7 +3,7 @@
 
 /*
  * Copyright (C) 2001, 2002 Samuel Hocevar <sam@zoy.org>,
- *                          Håkan Hjort <d95hjort@dtek.chalmers.se>
+ *                          HÃ¥kan Hjort <d95hjort@dtek.chalmers.se>
  *
  * This file is part of libdvdread.
  *

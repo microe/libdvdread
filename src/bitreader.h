@@ -2,7 +2,7 @@
 #define BITREADER_H_INCLUDED
 
 /*
- * Copyright (C) 2000, 2001, 2002 Håkan Hjort <d95hjort@dtek.chalmers.se>.
+ * Copyright (C) 2000, 2001, 2002 HÃ¥kan Hjort <d95hjort@dtek.chalmers.se>.
  *
  * This file is part of libdvdread.
  *

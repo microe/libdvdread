@@ -1,6 +1,3 @@
-#ifndef NAV_PRINT_H_INCLUDED
-#define NAV_PRINT_H_INCLUDED
-
 /*
  * Copyright (C) 2001, 2002 Billy Biggs <vektor@dumbterm.net>,
  *                          Håkan Hjort <d95hjort@dtek.chalmers.se>
@@ -21,6 +18,9 @@
  * with libdvdread; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
+
+#ifndef LIBDVDREAD_NAV_PRINT_H
+#define LIBDVDREAD_NAV_PRINT_H
 
 #include "nav_types.h"
 
@@ -49,4 +49,4 @@ void navPrint_DSI(dsi_t *);
 #ifdef __cplusplus
 };
 #endif
-#endif /* NAV_PRINT_H_INCLUDED */
+#endif /* LIBDVDREAD_NAV_PRINT_H */

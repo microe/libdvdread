@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef DVDNAV_INTERNAL_H_INCLUDED
-#define DVDNAV_INTERNAL_H_INCLUDED
+#ifndef LIBDVDREAD_DVDNAV_INTERNAL_H
+#define LIBDVDREAD_DVDNAV_INTERNAL_H
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -182,4 +182,4 @@ struct dvdnav_s {
 #define S_OK  DVDNAV_STATUS_OK
 #endif /* MSC_VER */
 
-#endif /* DVDNAV_INTERNAL_H_INCLUDED */
+#endif /* LIBDVDREAD_DVDNAV_INTERNAL_H */

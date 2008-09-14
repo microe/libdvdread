@@ -1,6 +1,3 @@
-#ifndef BITREADER_H_INCLUDED
-#define BITREADER_H_INCLUDED
-
 /*
  * Copyright (C) 2000, 2001, 2002 Håkan Hjort <d95hjort@dtek.chalmers.se>.
  *
@@ -21,6 +18,8 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+#ifndef LIBDVDREAD_BITREADER_H
+#define LIBDVDREAD_BITREADER_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -39,4 +38,4 @@ uint32_t dvdread_getbits(getbits_state_t *state, uint32_t number_of_bits);
 #ifdef __cplusplus
 };
 #endif
-#endif /* BITREADER_H_INCLUDED */
+#endif /* LIBDVDREAD_BITREADER_H */

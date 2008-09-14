@@ -1,5 +1,5 @@
-#ifndef DVDREAD_INTERNAL_H
-#define DVDREAD_INTERNAL_H
+#ifndef LIBDVDREAD_DVDREAD_INTERNAL_H
+#define LIBDVDREAD_DVDREAD_INTERNAL_H
 
 #ifdef _MSC_VER
 #include <unistd.h>
@@ -12,4 +12,4 @@
                    __FILE__, __LINE__, # arg ); \
  }
 
-#endif /* DVDREAD_INTERNAL_H */
+#endif /* LIBDVDREAD_DVDREAD_INTERNAL_H */

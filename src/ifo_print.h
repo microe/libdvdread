@@ -19,8 +19,8 @@
  *
  */
 
-#ifndef IFO_PRINT_H_INCLUDED
-#define IFO_PRINT_H_INCLUDED
+#ifndef LIBDVDREAD_IFO_PRINT_H
+#define LIBDVDREAD_IFO_PRINT_H
 
 #include <inttypes.h>
 #include "ifo_types.h"
@@ -28,7 +28,7 @@
 void ifo_print(dvd_reader_t *dvd, int title);
 void dvdread_print_time(dvd_time_t *dtime);
 
-#endif /* IFO_PRINT_H_INCLUDED */
+#endif /* LIBDVDREAD_IFO_PRINT_H */
 
 /*
  * $Log$

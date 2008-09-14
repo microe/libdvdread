@@ -1,6 +1,3 @@
-#ifndef IFO_TYPES_H_INCLUDED
-#define IFO_TYPES_H_INCLUDED
-
 /*
  * Copyright (C) 2000, 2001 Björn Englund <d4bjorn@dtek.chalmers.se>,
  *                          Håkan Hjort <d95hjort@dtek.chalmers.se>
@@ -21,6 +18,9 @@
  * with libdvdread; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
+
+#ifndef LIBDVDREAD_IFO_TYPES_H
+#define LIBDVDREAD_IFO_TYPES_H
 
 #include <inttypes.h>
 #include "dvd_reader.h"
@@ -746,4 +746,4 @@ typedef struct {
   vobu_admap_t   *vts_vobu_admap;
 } ifo_handle_t;
 
-#endif /* IFO_TYPES_H_INCLUDED */
+#endif /* LIBDVDREAD_IFO_TYPES_H */

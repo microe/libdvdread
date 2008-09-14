@@ -1,6 +1,3 @@
-#ifndef BSWAP_H_INCLUDED
-#define BSWAP_H_INCLUDED
-
 /*
  * Copyright (C) 2000, 2001 Billy Biggs <vektor@dumbterm.net>,
  *                          Håkan Hjort <d95hjort@dtek.chalmers.se>
@@ -21,6 +18,9 @@
  * with libdvdread; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
+
+#ifndef LIBDVDREAD_BSWAP_H
+#define LIBDVDREAD_BSWAP_H
 
 #include <config.h>
 
@@ -103,4 +103,4 @@
 
 #endif /* WORDS_BIGENDIAN */
 
-#endif /* BSWAP_H_INCLUDED */
+#endif /* LIBDVDREAD_BSWAP_H */

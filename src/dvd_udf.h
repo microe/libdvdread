@@ -1,6 +1,3 @@
-#ifndef DVD_UDF_H_INCLUDED
-#define DVD_UDF_H_INCLUDED
-
 /*
  * This code is based on dvdudf by:
  *   Christian Wolff <scarabaeus@convergence.de>.
@@ -31,6 +28,9 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+#ifndef LIBDVDREAD_DVD_UDF_H
+#define LIBDVDREAD_DVD_UDF_H
+
 #include <inttypes.h>
 
 #include "dvd_reader.h"
@@ -59,4 +59,4 @@ void SetUDFCacheHandle(dvd_reader_t *device, void *cache);
 #ifdef __cplusplus
 };
 #endif
-#endif /* DVD_UDF_H_INCLUDED */
+#endif /* LIBDVDREAD_DVD_UDF_H */

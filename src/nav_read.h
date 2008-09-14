@@ -1,6 +1,3 @@
-#ifndef NAV_READ_H_INCLUDED
-#define NAV_READ_H_INCLUDED
-
 /*
  * Copyright (C) 2000, 2001, 2002 Håkan Hjort <d95hjort@dtek.chalmers.se>.
  *
@@ -20,6 +17,9 @@
  * with libdvdread; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
+
+#ifndef LIBDVDREAD_NAV_READ_H
+#define LIBDVDREAD_NAV_READ_H
 
 #include "nav_types.h"
 
@@ -50,4 +50,4 @@ void navRead_DSI(dsi_t *, unsigned char *);
 #ifdef __cplusplus
 };
 #endif
-#endif /* NAV_READ_H_INCLUDED */
+#endif /* LIBDVDREAD_NAV_READ_H */

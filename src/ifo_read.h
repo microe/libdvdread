@@ -1,6 +1,3 @@
-#ifndef IFO_READ_H_INCLUDED
-#define IFO_READ_H_INCLUDED
-
 /*
  * Copyright (C) 2000, 2001, 2002 Björn Englund <d4bjorn@dtek.chalmers.se>,
  *                                Håkan Hjort <d95hjort@dtek.chalmers.se>
@@ -21,6 +18,9 @@
  * with libdvdread; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
+
+#ifndef LIBDVDREAD_IFO_READ_H
+#define LIBDVDREAD_IFO_READ_H
 
 #include "ifo_types.h"
 #include "dvd_reader.h"
@@ -226,4 +226,4 @@ void ifoFree_TXTDT_MGI(ifo_handle_t *);
 #ifdef __cplusplus
 };
 #endif
-#endif /* IFO_READ_H_INCLUDED */
+#endif /* LIBDVDREAD_IFO_READ_H */

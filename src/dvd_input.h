@@ -1,6 +1,3 @@
-#ifndef DVD_INPUT_H_INCLUDED
-#define DVD_INPUT_H_INCLUDED
-
 /*
  * Copyright (C) 2001, 2002 Samuel Hocevar <sam@zoy.org>,
  *                          Håkan Hjort <d95hjort@dtek.chalmers.se>
@@ -21,6 +18,9 @@
  * with libdvdread; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
+
+#ifndef LIBDVDREAD_DVD_INPUT_H
+#define LIBDVDREAD_DVD_INPUT_H
 
 /**
  * Defines and flags.  Make sure they fit the libdvdcss API!
@@ -47,4 +47,4 @@ extern char *      (*dvdinput_error) (dvd_input_t);
  */
 int dvdinput_setup(void);
 
-#endif /* DVD_INPUT_H_INCLUDED */
+#endif /* LIBDVDREAD_DVD_INPUT_H */

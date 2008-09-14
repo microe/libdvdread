@@ -1,6 +1,3 @@
-#ifndef DVD_READER_H_INCLUDED
-#define DVD_READER_H_INCLUDED
-
 /*
  * Copyright (C) 2001, 2002 Billy Biggs <vektor@dumbterm.net>,
  *                          Håkan Hjort <d95hjort@dtek.chalmers.se>,
@@ -22,6 +19,9 @@
  * with libdvdread; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
+
+#ifndef LIBDVDREAD_DVD_READER_H
+#define LIBDVDREAD_DVD_READER_H
 
 #ifdef _MSC_VER
 #include <config.h>
@@ -274,4 +274,4 @@ int DVDUDFCacheLevel( dvd_reader_t *, int );
 #ifdef __cplusplus
 };
 #endif
-#endif /* DVD_READER_H_INCLUDED */
+#endif /* LIBDVDREAD_DVD_READER_H */

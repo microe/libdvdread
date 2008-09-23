@@ -37,10 +37,10 @@ static void ifo_print_time(int level, dvd_time_t *dtime) {
   assert((dtime->frame_u&0xf) < 0xa);
 
   printf("%02x:%02x:%02x.%02x",
-	 dtime->hour,
-	 dtime->minute,
-	 dtime->second,
-	 dtime->frame_u & 0x3f);
+         dtime->hour,
+         dtime->minute,
+         dtime->second,
+         dtime->frame_u & 0x3f);
   switch((dtime->frame_u & 0xc0) >> 6) {
   case 1:
     rate = "25.00";
@@ -316,7 +316,7 @@ static void ifo_print_audio_attributes(int level, audio_attr_t *attr) {
     break;
   default:
     printf("sample_frequency %i (please send a bug report) ",
-	   attr->sample_frequency);
+           attr->sample_frequency);
   }
 
   printf("%dCh ", attr->channels + 1);
@@ -364,7 +364,7 @@ static void ifo_print_subp_attributes(int level, subp_attr_t *attr) {
     printf("%c%c ", attr->lang_code >> 8, attr->lang_code & 0xff);
   } else {
     printf("%02x%02x ", 0xff & (unsigned)(attr->lang_code >> 8),
-	   0xff & (unsigned)(attr->lang_code & 0xff));
+           0xff & (unsigned)(attr->lang_code & 0xff));
   }
 
   printf("%d ", attr->zero1);
@@ -501,8 +501,8 @@ void ifo_print_VMGI_MAT(vmgi_mat_t *vmgi_mat) {
   printf("Last Sector of VMG: %08x\n", vmgi_mat->vmg_last_sector);
   printf("Last Sector of VMGI: %08x\n", vmgi_mat->vmgi_last_sector);
   printf("Specification version number: %01x.%01x\n",
-	 vmgi_mat->specification_version >> 4,
-	 vmgi_mat->specification_version & 0xf);
+         vmgi_mat->specification_version >> 4,
+         vmgi_mat->specification_version & 0xf);
   /* Byte 2 of 'VMG Category' (00xx0000) is the Region Code */
   printf("VMG Category: %08x (Region Code=%02x)\n", vmgi_mat->vmg_category, ((vmgi_mat->vmg_category >> 16) & 0xff) ^0xff);
   printf("VMG Number of Volumes: %i\n", vmgi_mat->vmg_nr_of_volumes);
@@ -514,7 +514,7 @@ void ifo_print_VMGI_MAT(vmgi_mat_t *vmgi_mat) {
   printf("%08x\n", (uint32_t)vmgi_mat->vmg_pos_code);
   printf("End byte of VMGI_MAT: %08x\n", vmgi_mat->vmgi_last_byte);
   printf("Start byte of First Play PGC (FP PGC): %08x\n",
-	 vmgi_mat->first_play_pgc);
+         vmgi_mat->first_play_pgc);
   printf("Start sector of VMGM_VOBS: %08x\n", vmgi_mat->vmgm_vobs);
   printf("Start sector of TT_SRPT: %08x\n", vmgi_mat->tt_srpt);
   printf("Start sector of VMGM_PGCI_UT: %08x\n", vmgi_mat->vmgm_pgci_ut);
@@ -523,19 +523,19 @@ void ifo_print_VMGI_MAT(vmgi_mat_t *vmgi_mat) {
   printf("Start sector of TXTDT_MG: %08x\n", vmgi_mat->txtdt_mgi);
   printf("Start sector of VMGM_C_ADT: %08x\n", vmgi_mat->vmgm_c_adt);
   printf("Start sector of VMGM_VOBU_ADMAP: %08x\n",
-	 vmgi_mat->vmgm_vobu_admap);
+         vmgi_mat->vmgm_vobu_admap);
   printf("Video attributes of VMGM_VOBS: ");
   ifo_print_video_attributes(5, &vmgi_mat->vmgm_video_attr);
   printf("\n");
   printf("VMGM Number of Audio attributes: %i\n",
-	 vmgi_mat->nr_of_vmgm_audio_streams);
+         vmgi_mat->nr_of_vmgm_audio_streams);
   if(vmgi_mat->nr_of_vmgm_audio_streams > 0) {
     printf("\tstream %i status: ", 1);
     ifo_print_audio_attributes(5, &vmgi_mat->vmgm_audio_attr);
     printf("\n");
   }
   printf("VMGM Number of Sub-picture attributes: %i\n",
-	 vmgi_mat->nr_of_vmgm_subp_streams);
+         vmgi_mat->nr_of_vmgm_subp_streams);
   if(vmgi_mat->nr_of_vmgm_subp_streams > 0) {
     printf("\tstream %2i status: ", 1);
     ifo_print_subp_attributes(5, &vmgi_mat->vmgm_subp_attr);
@@ -551,8 +551,8 @@ void ifo_print_VTSI_MAT(vtsi_mat_t *vtsi_mat) {
   printf("Last Sector of VTS: %08x\n", vtsi_mat->vts_last_sector);
   printf("Last Sector of VTSI: %08x\n", vtsi_mat->vtsi_last_sector);
   printf("Specification version number: %01x.%01x\n",
-	 vtsi_mat->specification_version>>4,
-	 vtsi_mat->specification_version&0xf);
+         vtsi_mat->specification_version>>4,
+         vtsi_mat->specification_version&0xf);
   printf("VTS Category: %08x\n", vtsi_mat->vts_category);
   printf("End byte of VTSI_MAT: %08x\n", vtsi_mat->vtsi_last_byte);
   printf("Start sector of VTSM_VOBS:  %08x\n", vtsi_mat->vtsm_vobs);
@@ -571,7 +571,7 @@ void ifo_print_VTSI_MAT(vtsi_mat_t *vtsi_mat) {
   printf("\n");
 
   printf("VTSM Number of Audio attributes: %i\n",
-	 vtsi_mat->nr_of_vtsm_audio_streams);
+         vtsi_mat->nr_of_vtsm_audio_streams);
   if(vtsi_mat->nr_of_vtsm_audio_streams > 0) {
     printf("\tstream %i status: ", 1);
     ifo_print_audio_attributes(5, &vtsi_mat->vtsm_audio_attr);
@@ -579,7 +579,7 @@ void ifo_print_VTSI_MAT(vtsi_mat_t *vtsi_mat) {
   }
 
   printf("VTSM Number of Sub-picture attributes: %i\n",
-	 vtsi_mat->nr_of_vtsm_subp_streams);
+         vtsi_mat->nr_of_vtsm_subp_streams);
   if(vtsi_mat->nr_of_vtsm_subp_streams > 0) {
     printf("\tstream %2i status: ", 1);
     ifo_print_subp_attributes(5, &vtsi_mat->vtsm_subp_attr);
@@ -591,7 +591,7 @@ void ifo_print_VTSI_MAT(vtsi_mat_t *vtsi_mat) {
   printf("\n");
 
   printf("VTS Number of Audio attributes: %i\n",
-	 vtsi_mat->nr_of_vts_audio_streams);
+         vtsi_mat->nr_of_vts_audio_streams);
   for(i = 0; i < vtsi_mat->nr_of_vts_audio_streams; i++) {
     printf("\tstream %i status: ", i);
     ifo_print_audio_attributes(5, &vtsi_mat->vts_audio_attr[i]);
@@ -599,7 +599,7 @@ void ifo_print_VTSI_MAT(vtsi_mat_t *vtsi_mat) {
   }
 
   printf("VTS Number of Subpicture attributes: %i\n",
-	 vtsi_mat->nr_of_vts_subp_streams);
+         vtsi_mat->nr_of_vts_subp_streams);
   for(i = 0; i < vtsi_mat->nr_of_vts_subp_streams; i++) {
     printf("\tstream %2i status: ", i);
     ifo_print_subp_attributes(5, &vtsi_mat->vts_subp_attr[i]);
@@ -665,28 +665,28 @@ static void ifo_print_CELL_PLAYBACK(cell_playback_t *cell_playback, int nr) {
       const char *s;
       switch(cell_playback[i].block_mode) {
       case 0:
-	s = "not a"; break;
+        s = "not a"; break;
       case 1:
-	s = "the first"; break;
+        s = "the first"; break;
       case 2:
       default:
-	s = ""; break;
+        s = ""; break;
       case 3:
-	s = "last"; break;
+        s = "last"; break;
       }
       printf("%s cell in the block ", s);
 
       switch(cell_playback[i].block_type) {
       case 0:
-	printf("not part of the block ");
-	break;
+        printf("not part of the block ");
+        break;
       case 1:
-	printf("angle block ");
-	break;
+        printf("angle block ");
+        break;
       case 2:
       case 3:
-	printf("(send bug repport) ");
-	break;
+        printf("(send bug repport) ");
+        break;
       }
     }
     if(cell_playback[i].seamless_play)
@@ -709,11 +709,11 @@ static void ifo_print_CELL_PLAYBACK(cell_playback_t *cell_playback, int nr) {
       printf("cell command %d", cell_playback[i].cell_cmd_nr);
 
     printf("\n\tStart sector: %08x\tFirst ILVU end  sector: %08x\n",
-	   cell_playback[i].first_sector,
-	   cell_playback[i].first_ilvu_end_sector);
+           cell_playback[i].first_sector,
+           cell_playback[i].first_ilvu_end_sector);
     printf("\tEnd   sector: %08x\tLast VOBU start sector: %08x\n",
-	   cell_playback[i].last_sector,
-	   cell_playback[i].last_vobu_start_sector);
+           cell_playback[i].last_sector,
+           cell_playback[i].last_vobu_start_sector);
   }
 }
 
@@ -727,7 +727,7 @@ static void ifo_print_CELL_POSITION(cell_position_t *cell_position, int nr) {
 
   for(i=0;i<nr;i++) {
     printf("Cell: %3i has VOB ID: %3i, Cell ID: %3i\n", i + 1,
-	   cell_position[i].vob_id_nr, cell_position[i].cell_nr);
+           cell_position[i].vob_id_nr, cell_position[i].cell_nr);
   }
 }
 
@@ -751,19 +751,19 @@ void ifo_print_PGC(pgc_t *pgc) {
 
     for(i = 0; i < 8; i++) {
       if(pgc->audio_control[i] & 0x8000) { /* The 'is present' bit */
-	printf("Audio stream %i control: %04x\n",
-	       i, pgc->audio_control[i]);
+        printf("Audio stream %i control: %04x\n",
+               i, pgc->audio_control[i]);
       }
     }
 
   for(i = 0; i < 32; i++) {
     if(pgc->subp_control[i] & 0x80000000) { /* The 'is present' bit */
       printf("Subpicture stream %2i control: %08x: 4:3=%d, Wide=%d, Letterbox=%d, Pan-Scan=%d\n",
-	     i, pgc->subp_control[i],
-	     (pgc->subp_control[i] >>24) & 0x1f,
-	     (pgc->subp_control[i] >>16) & 0x1f,
-	     (pgc->subp_control[i] >>8) & 0x1f,
-	     (pgc->subp_control[i] ) & 0x1f);
+             i, pgc->subp_control[i],
+             (pgc->subp_control[i] >>24) & 0x1f,
+             (pgc->subp_control[i] >>16) & 0x1f,
+             (pgc->subp_control[i] >>8) & 0x1f,
+             (pgc->subp_control[i] ) & 0x1f);
     }
   }
 
@@ -793,18 +793,18 @@ void ifo_print_TT_SRPT(tt_srpt_t *tt_srpt) {
   int i;
 
   printf("Number of TitleTrack search pointers: %i\n",
-	 tt_srpt->nr_of_srpts);
+         tt_srpt->nr_of_srpts);
   for(i=0;i<tt_srpt->nr_of_srpts;i++) {
     printf("Title Track index %i\n", i + 1);
     printf("\tTitle set number (VTS): %i",
-	   tt_srpt->title[i].title_set_nr);
+           tt_srpt->title[i].title_set_nr);
     printf("\tVTS_TTN: %i\n", tt_srpt->title[i].vts_ttn);
     printf("\tNumber of PTTs: %i\n", tt_srpt->title[i].nr_of_ptts);
     printf("\tNumber of angles: %i\n",
-	   tt_srpt->title[i].nr_of_angles);
+           tt_srpt->title[i].nr_of_angles);
 
     printf("\tTitle playback type: (%02x)\n",
-	   *(uint8_t *)&(tt_srpt->title[i].pb_ty));
+           *(uint8_t *)&(tt_srpt->title[i].pb_ty));
     printf("\t\t%s\n",
        tt_srpt->title[i].pb_ty.multi_or_random_pgc_title ? "Random or Shuffle" : "Sequencial");
     if (tt_srpt->title[i].pb_ty.jlc_exists_in_cell_cmd) printf("\t\tJump/Link/Call exists in cell cmd\n");
@@ -815,9 +815,9 @@ void ifo_print_TT_SRPT(tt_srpt_t *tt_srpt) {
     printf("\t\tChapter search or play:%d\n", tt_srpt->title[i].pb_ty.chapter_search_or_play);
 
     printf("\tParental ID field: %04x\n",
-	   tt_srpt->title[i].parental_id);
+           tt_srpt->title[i].parental_id);
     printf("\tTitle set starting sector %08x\n",
-	   tt_srpt->title[i].title_set_sector);
+           tt_srpt->title[i].title_set_sector);
   }
 }
 
@@ -825,14 +825,14 @@ void ifo_print_TT_SRPT(tt_srpt_t *tt_srpt) {
 void ifo_print_VTS_PTT_SRPT(vts_ptt_srpt_t *vts_ptt_srpt) {
   int i, j;
   printf(" nr_of_srpts %i last byte %i\n",
-	 vts_ptt_srpt->nr_of_srpts,
-	 vts_ptt_srpt->last_byte);
+         vts_ptt_srpt->nr_of_srpts,
+         vts_ptt_srpt->last_byte);
   for(i=0;i<vts_ptt_srpt->nr_of_srpts;i++) {
     for(j=0;j<vts_ptt_srpt->title[i].nr_of_ptts;j++) {
       printf("VTS_PTT_SRPT - Title %3i part %3i: PGC: %3i PG: %3i\n",
-	     i + 1, j + 1,
-	     vts_ptt_srpt->title[i].ptt[j].pgcn,
-	     vts_ptt_srpt->title[i].ptt[j].pgn );
+             i + 1, j + 1,
+             vts_ptt_srpt->title[i].ptt[j].pgcn,
+             vts_ptt_srpt->title[i].ptt[j].pgn );
     }
   }
 }
@@ -852,8 +852,8 @@ void ifo_print_PTL_MAIT(ptl_mait_t *ptl_mait) {
 
   for(i = 0; i < ptl_mait->nr_of_countries; i++) {
     printf("Country code: %c%c\n",
-	   ptl_mait->countries[i].country_code >> 8,
-	   ptl_mait->countries[i].country_code & 0xff);
+           ptl_mait->countries[i].country_code >> 8,
+           ptl_mait->countries[i].country_code & 0xff);
     /*
       printf("Start byte: %04x %i\n",
       ptl_mait->countries[i].pf_ptl_mai_start_byte,
@@ -865,8 +865,8 @@ void ifo_print_PTL_MAIT(ptl_mait_t *ptl_mait) {
        If it is for the menu it probably the first entry.  */
     for(j=0;j<8;j++) {
       hexdump( (uint8_t *)ptl_mait->countries - PTL_MAIT_COUNTRY_SIZE
-	       + ptl_mait->countries[i].pf_ptl_mai_start_byte
-	       + j*(ptl_mait->nr_of_vtss+1)*2, (ptl_mait->nr_of_vtss+1)*2);
+               + ptl_mait->countries[i].pf_ptl_mai_start_byte
+               + j*(ptl_mait->nr_of_vtss+1)*2, (ptl_mait->nr_of_vtss+1)*2);
       printf("\n");
     }
   }
@@ -904,10 +904,10 @@ void ifo_print_C_ADT(c_adt_t *c_adt) {
 
   for(i = 0; i < entries; i++) {
     printf("VOB ID: %3i, Cell ID: %3i   ",
-	   c_adt->cell_adr_table[i].vob_id, c_adt->cell_adr_table[i].cell_id);
+           c_adt->cell_adr_table[i].vob_id, c_adt->cell_adr_table[i].cell_id);
     printf("Sector (first): 0x%08x   (last): 0x%08x\n",
-	   c_adt->cell_adr_table[i].start_sector,
-	   c_adt->cell_adr_table[i].last_sector);
+           c_adt->cell_adr_table[i].start_sector,
+           c_adt->cell_adr_table[i].last_sector);
   }
 }
 
@@ -918,7 +918,7 @@ void ifo_print_VOBU_ADMAP(vobu_admap_t *vobu_admap) {
   entries = (vobu_admap->last_byte + 1 - VOBU_ADMAP_SIZE)/4;
   for(i = 0; i < entries; i++) {
     printf("VOBU %5i  First sector: 0x%08x\n", i + 1,
-	   vobu_admap->vobu_start_sectors[i]);
+           vobu_admap->vobu_start_sectors[i]);
   }
 }
 
@@ -983,8 +983,8 @@ void ifo_print_PGCI_UT(pgci_ut_t *pgci_ut) {
   for(i = 0; i < pgci_ut->nr_of_lus; i++) {
     printf("\nMenu Language Unit %d\n", i+1);
     printf("\nMenu Language Code: %c%c\n",
-	   pgci_ut->lu[i].lang_code >> 8,
-	   pgci_ut->lu[i].lang_code & 0xff);
+           pgci_ut->lu[i].lang_code >> 8,
+           pgci_ut->lu[i].lang_code & 0xff);
 
     menu = pgci_ut->lu[i].exists;
     printf("Menu Existence: %02x: ", menu);
@@ -1030,14 +1030,14 @@ static void ifo_print_VTS_ATTRIBUTES(vts_attributes_t *vts_attributes) {
   ifo_print_video_attributes(5, &vts_attributes->vtsm_vobs_attr);
   printf("\n");
   printf("Number of Audio streams: %i\n",
-	 vts_attributes->nr_of_vtsm_audio_streams);
+         vts_attributes->nr_of_vtsm_audio_streams);
   if(vts_attributes->nr_of_vtsm_audio_streams > 0) {
     printf("\tstream %i attributes: ", 1);
     ifo_print_audio_attributes(5, &vts_attributes->vtsm_audio_attr);
     printf("\n");
   }
   printf("Number of Subpicture streams: %i\n",
-	 vts_attributes->nr_of_vtsm_subp_streams);
+         vts_attributes->nr_of_vtsm_subp_streams);
   if(vts_attributes->nr_of_vtsm_subp_streams > 0) {
     printf("\tstream %2i attributes: ", 1);
     ifo_print_subp_attributes(5, &vts_attributes->vtsm_subp_attr);
@@ -1048,7 +1048,7 @@ static void ifo_print_VTS_ATTRIBUTES(vts_attributes_t *vts_attributes) {
   ifo_print_video_attributes(5, &vts_attributes->vtstt_vobs_video_attr);
   printf("\n");
   printf("Number of Audio streams: %i\n",
-	 vts_attributes->nr_of_vtstt_audio_streams);
+         vts_attributes->nr_of_vtstt_audio_streams);
   for(i = 0; i < vts_attributes->nr_of_vtstt_audio_streams; i++) {
     printf("\tstream %i attributes: ", i);
     ifo_print_audio_attributes(5, &vts_attributes->vtstt_audio_attr[i]);
@@ -1056,7 +1056,7 @@ static void ifo_print_VTS_ATTRIBUTES(vts_attributes_t *vts_attributes) {
   }
 
   printf("Number of Subpicture streams: %i\n",
-	 vts_attributes->nr_of_vtstt_subp_streams);
+         vts_attributes->nr_of_vtstt_subp_streams);
   for(i = 0; i < vts_attributes->nr_of_vtstt_subp_streams; i++) {
     printf("\tstream %2i attributes: ", i);
     ifo_print_subp_attributes(5, &vts_attributes->vtstt_subp_attr[i]);

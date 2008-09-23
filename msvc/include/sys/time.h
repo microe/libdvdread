@@ -22,7 +22,7 @@
  *
  * sys/time.h - There is no seperate sys/time.h for win32 so we simply
  *              include the standard time header as well as our xine
- *				timer functions.
+ *                              timer functions.
  */
 
 #include <time.h>

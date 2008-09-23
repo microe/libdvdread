@@ -112,8 +112,8 @@ typedef enum {
   DVD_READ_INFO_BACKUP_FILE, /**< VIDEO_TS.BUP  or VTS_XX_0.BUP (title) */
   DVD_READ_MENU_VOBS,        /**< VIDEO_TS.VOB  or VTS_XX_0.VOB (title) */
   DVD_READ_TITLE_VOBS        /**< VTS_XX_[1-9].VOB (title).  All files in
-				  the title set are opened and read as a
-				  single file. */
+                                  the title set are opened and read as a
+                                  single file. */
 } dvd_read_domain_t;
 
 /**
@@ -229,7 +229,7 @@ int DVDDiscID( dvd_reader_t *, unsigned char * );
  * @return 0 on success, -1 on error.
  */
 int DVDUDFVolumeInfo( dvd_reader_t *, char *, unsigned int,
-		      unsigned char *, unsigned int );
+                      unsigned char *, unsigned int );
 
 int DVDFileSeekForce( dvd_file_t *, int offset, int force_size);
 
@@ -255,7 +255,7 @@ int DVDFileSeekForce( dvd_file_t *, int offset, int force_size);
  * @return 0 on success, -1 on error.
  */
 int DVDISOVolumeInfo( dvd_reader_t *, char *, unsigned int,
-		      unsigned char *, unsigned int );
+                      unsigned char *, unsigned int );
 
 /**
  * Sets the level of caching that is done when reading from a device

@@ -316,15 +316,15 @@ int dvdinput_setup(void)
 
     if(dlsym(dvdcss_library, U_S "dvdcss_crack")) {
       fprintf(stderr,
-	      "libdvdread: Old (pre-0.0.2) version of libdvdcss found.\n"
-	      "libdvdread: You should get the latest version from "
-	      "http://www.videolan.org/\n" );
+              "libdvdread: Old (pre-0.0.2) version of libdvdcss found.\n"
+              "libdvdread: You should get the latest version from "
+              "http://www.videolan.org/\n" );
       dlclose(dvdcss_library);
       dvdcss_library = NULL;
     } else if(!DVDcss_open  || !DVDcss_close || !DVDcss_title || !DVDcss_seek
-	      || !DVDcss_read || !DVDcss_error || !dvdcss_version) {
+              || !DVDcss_read || !DVDcss_error || !dvdcss_version) {
       fprintf(stderr,  "libdvdread: Missing symbols in %s, "
-	      "this shouldn't happen !\n", CSS_LIB);
+              "this shouldn't happen !\n", CSS_LIB);
       dlclose(dvdcss_library);
     }
   }
@@ -338,7 +338,7 @@ int dvdinput_setup(void)
     fprintf(stderr, "DVDCSS_VERBOSE %s\n", psz_verbose);
     */
     fprintf(stderr, "libdvdread: Using libdvdcss version %s for DVD access\n",
-	    dvdcss_version ? *dvdcss_version : "");
+            dvdcss_version ? *dvdcss_version : "");
 
     /* libdvdcss wrapper functions */
     dvdinput_open  = css_open;

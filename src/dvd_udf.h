@@ -50,9 +50,9 @@ uint32_t UDFFindFile( dvd_reader_t *device, char *filename, uint32_t *size );
 
 void FreeUDFCache(void *cache);
 int UDFGetVolumeIdentifier(dvd_reader_t *device,
-			   char *volid, unsigned int volid_size);
+                           char *volid, unsigned int volid_size);
 int UDFGetVolumeSetIdentifier(dvd_reader_t *device,
-			      uint8_t *volsetid, unsigned int volsetid_size);
+                              uint8_t *volsetid, unsigned int volsetid_size);
 void *GetUDFCacheHandle(dvd_reader_t *device);
 void SetUDFCacheHandle(dvd_reader_t *device, void *cache);
 

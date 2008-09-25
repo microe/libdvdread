@@ -749,12 +749,12 @@ void ifo_print_PGC(pgc_t *pgc) {
   printf("Prohibited user operations: ");
   ifo_print_USER_OPS(&pgc->prohibited_ops);
 
-    for(i = 0; i < 8; i++) {
-      if(pgc->audio_control[i] & 0x8000) { /* The 'is present' bit */
-        printf("Audio stream %i control: %04x\n",
-               i, pgc->audio_control[i]);
-      }
+  for(i = 0; i < 8; i++) {
+    if(pgc->audio_control[i] & 0x8000) { /* The 'is present' bit */
+      printf("Audio stream %i control: %04x\n",
+             i, pgc->audio_control[i]);
     }
+  }
 
   for(i = 0; i < 32; i++) {
     if(pgc->subp_control[i] & 0x80000000) { /* The 'is present' bit */

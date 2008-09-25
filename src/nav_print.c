@@ -248,5 +248,3 @@ void navPrint_DSI(dsi_t *dsi) {
   navPrint_VOBU_SRI(&dsi->vobu_sri);
   navPrint_SYNCI(&dsi->synci);
 }
-
-

@@ -195,8 +195,8 @@ typedef struct {
  * Seamless Angle Infromation for one angle
  */
 typedef struct {
-    uint32_t address; /**< offset to next ILVU, high bit is before/after */
-    uint16_t size;    /**< byte size of the ILVU pointed to by address */
+  uint32_t address; /**< offset to next ILVU, high bit is before/after */
+  uint16_t size;    /**< byte size of the ILVU pointed to by address */
 } ATTRIBUTE_PACKED sml_agl_data_t;
 
 /**

@@ -140,7 +140,6 @@ void navRead_PCI(pci_t *pci, unsigned char *buffer) {
   }
 
 
-
 #ifndef NDEBUG
   /* Asserts */
 
@@ -160,7 +159,7 @@ void navRead_PCI(pci_t *pci, unsigned char *buffer) {
     CHECK_VALUE(pci->hli.hl_gi.btngr_ns != 0);
   } else {
     CHECK_VALUE((pci->hli.hl_gi.btn_ns != 0 && pci->hli.hl_gi.btngr_ns != 0)
-           || (pci->hli.hl_gi.btn_ns == 0 && pci->hli.hl_gi.btngr_ns == 0));
+                || (pci->hli.hl_gi.btn_ns == 0 && pci->hli.hl_gi.btngr_ns == 0));
   }
 
   /* pci hli btnit */
@@ -264,4 +263,3 @@ void navRead_DSI(dsi_t *dsi, unsigned char *buffer) {
   /* dsi dsi gi */
   CHECK_VALUE(dsi->dsi_gi.zero1 == 0);
 }
-

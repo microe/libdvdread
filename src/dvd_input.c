@@ -198,7 +198,7 @@ static int file_seek(dvd_input_t dev, int blocks)
 
   pos = lseek(dev->fd, (off_t)blocks * (off_t)DVD_VIDEO_LB_LEN, SEEK_SET);
   if(pos < 0) {
-      return pos;
+    return pos;
   }
   /* assert pos % DVD_VIDEO_LB_LEN == 0 */
   return (int) (pos / DVD_VIDEO_LB_LEN);

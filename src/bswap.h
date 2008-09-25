@@ -74,15 +74,15 @@
  */
 
 #elif defined(__FreeBSD__) || defined(__sun) || defined(__bsdi__) || defined(WIN32) || defined(__CYGWIN__) || defined(__BEOS__)
-#define B2N_16(x) \
- x = ((((x) & 0xff00) >> 8) | \
+#define B2N_16(x)                             \
+ x = ((((x) & 0xff00) >> 8) |                 \
       (((x) & 0x00ff) << 8))
-#define B2N_32(x) \
- x = ((((x) & 0xff000000) >> 24) | \
-      (((x) & 0x00ff0000) >>  8) | \
-      (((x) & 0x0000ff00) <<  8) | \
+#define B2N_32(x)                             \
+ x = ((((x) & 0xff000000) >> 24) |            \
+      (((x) & 0x00ff0000) >>  8) |            \
+      (((x) & 0x0000ff00) <<  8) |            \
       (((x) & 0x000000ff) << 24))
-#define B2N_64(x) \
+#define B2N_64(x)                             \
  x = ((((x) & 0xff00000000000000ULL) >> 56) | \
       (((x) & 0x00ff000000000000ULL) >> 40) | \
       (((x) & 0x0000ff0000000000ULL) >> 24) | \

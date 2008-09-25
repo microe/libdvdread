@@ -222,31 +222,31 @@ static void ifo_print_audio_attributes(int level, audio_attr_t *attr) {
   case 3:
     printf("mpeg2ext ");
     switch(attr->quantization) {
-      case 0:
-        printf("no drc ");
-        break;
-      case 1:
-        printf("drc ");
-        break;
-      default:
-        printf("(please send a bug report) mpeg reserved quant/drc  (%d)", attr->quantization);
+    case 0:
+      printf("no drc ");
+      break;
+    case 1:
+      printf("drc ");
+      break;
+    default:
+      printf("(please send a bug report) mpeg reserved quant/drc  (%d)", attr->quantization);
     }
     break;
   case 4:
     printf("lpcm ");
     switch(attr->quantization) {
-      case 0:
-        printf("16bit ");
-        break;
-      case 1:
-        printf("20bit ");
-        break;
-      case 2:
-        printf("24bit ");
-        break;
-      case 3:
-        printf("(please send a bug report) lpcm reserved quant/drc  (%d)", attr->quantization);
+    case 0:
+      printf("16bit ");
       break;
+    case 1:
+      printf("20bit ");
+      break;
+    case 2:
+      printf("24bit ");
+      break;
+    case 3:
+      printf("(please send a bug report) lpcm reserved quant/drc  (%d)", attr->quantization);
+    break;
     }
     break;
   case 5:
@@ -806,7 +806,7 @@ void ifo_print_TT_SRPT(tt_srpt_t *tt_srpt) {
     printf("\tTitle playback type: (%02x)\n",
            *(uint8_t *)&(tt_srpt->title[i].pb_ty));
     printf("\t\t%s\n",
-       tt_srpt->title[i].pb_ty.multi_or_random_pgc_title ? "Random or Shuffle" : "Sequencial");
+           tt_srpt->title[i].pb_ty.multi_or_random_pgc_title ? "Random or Shuffle" : "Sequencial");
     if (tt_srpt->title[i].pb_ty.jlc_exists_in_cell_cmd) printf("\t\tJump/Link/Call exists in cell cmd\n");
     if (tt_srpt->title[i].pb_ty.jlc_exists_in_prepost_cmd) printf("\t\tJump/Link/Call exists in pre/post cmd\n");
     if (tt_srpt->title[i].pb_ty.jlc_exists_in_button_cmd) printf("\t\tJump/Link/Call exists in button cmd\n");
@@ -960,15 +960,15 @@ void ifo_print_PGCIT(pgcit_t *pgcit, int pgc_type) {
     printf("\nProgram (PGC): %3i\n", i + 1);
     if (pgc_type) {
        printf("PGC Category: Entry PGC %d, Menu Type=0x%02x:%s (Entry id 0x%02x), ",
-            pgcit->pgci_srp[i].entry_id >> 7,
-            pgcit->pgci_srp[i].entry_id & 0xf,
-            ifo_print_menu_name(pgcit->pgci_srp[i].entry_id & 0xf),
-            pgcit->pgci_srp[i].entry_id);
+              pgcit->pgci_srp[i].entry_id >> 7,
+              pgcit->pgci_srp[i].entry_id & 0xf,
+              ifo_print_menu_name(pgcit->pgci_srp[i].entry_id & 0xf),
+              pgcit->pgci_srp[i].entry_id);
     } else {
        printf("PGC Category: %s VTS_TTN:0x%02x (Entry id 0x%02x), ",
-            pgcit->pgci_srp[i].entry_id >> 7 ? "At Start of" : "During",
-            pgcit->pgci_srp[i].entry_id & 0xf,
-            pgcit->pgci_srp[i].entry_id);
+              pgcit->pgci_srp[i].entry_id >> 7 ? "At Start of" : "During",
+              pgcit->pgci_srp[i].entry_id & 0xf,
+              pgcit->pgci_srp[i].entry_id);
     }
     printf("Parental ID mask 0x%04x\n", pgcit->pgci_srp[i].ptl_id_mask);
     ifo_print_PGC(pgcit->pgci_srp[i].pgc);

@@ -41,7 +41,7 @@
 
 #ifdef WORDS_BIGENDIAN
 # define SWAP(n)                                                        \
-    (((n) << 24) | (((n) & 0xff00) << 8) | (((n) >> 8) & 0xff00) | ((n) >> 24))
+  (((n) << 24) | (((n) & 0xff00) << 8) | (((n) >> 8) & 0xff00) | ((n) >> 24))
 #else
 # define SWAP(n) (n)
 #endif
@@ -160,7 +160,7 @@ md5_stream (stream, resblock)
         break;
 
       /* Process buffer with BLOCKSIZE bytes.  Note that
-                        BLOCKSIZE % 64 == 0
+         BLOCKSIZE % 64 == 0
        */
       md5_process_block (buffer, BLOCKSIZE, &ctx);
     }
@@ -294,14 +294,14 @@ md5_process_block (buffer, len, ctx)
          before the computation.  To reduce the work for the next steps
          we store the swapped words in the array CORRECT_WORDS.  */
 
-#define OP(a, b, c, d, s, T)                                            \
-      do                                                                \
-        {                                                               \
-          a += FF (b, c, d) + (*cwp++ = SWAP (*words)) + T;             \
-          ++words;                                                      \
-          a = rol (a, s);                                               \
-          a += b;                                                       \
-        }                                                               \
+#define OP(a, b, c, d, s, T)                                    \
+      do                                                        \
+        {                                                       \
+          a += FF (b, c, d) + (*cwp++ = SWAP (*words)) + T;     \
+          ++words;                                              \
+          a = rol (a, s);                                       \
+          a += b;                                               \
+        }                                                       \
       while (0)
 
       /* Before we start, one word to the strange constants.
@@ -333,13 +333,13 @@ md5_process_block (buffer, len, ctx)
          in CORRECT_WORDS.  Redefine the macro to take an additional first
          argument specifying the function to use.  */
 #undef OP
-#define OP(f, a, b, c, d, k, s, T)                                      \
-      do                                                                \
-        {                                                               \
-          a += f (b, c, d) + correct_words[k] + T;                      \
-          a = rol (a, s);                                               \
-          a += b;                                                       \
-        }                                                               \
+#define OP(f, a, b, c, d, k, s, T)                      \
+      do                                                \
+        {                                               \
+          a += f (b, c, d) + correct_words[k] + T;      \
+          a = rol (a, s);                               \
+          a += b;                                       \
+        }                                               \
       while (0)
 
       /* Round 2.  */

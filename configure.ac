@@ -35,7 +35,7 @@ AC_SUBST(DVDREAD_MINOR)
 AC_SUBST(DVDREAD_SUB)
 
 dnl The libtool version numbers (DVDREAD_LT_*); Don't even think about faking this!
-dnl 
+dnl
 dnl immediately before every release do:
 dnl ===================================
 dnl if (the interface is totally unchanged from previous release)
@@ -48,7 +48,7 @@ dnl       AGE ++;
 dnl    if (any interfaces have been _removed_ or _incompatibly changed_)
 dnl       AGE = 0;
 dnl }
-dnl 
+dnl
 dnl If you want to know more about what you are doing, here are some details:
 dnl  * DVDREAD_LT_CURRENT is the current API version
 dnl  * DVDREAD_LT_REVISION is an internal revision number which is increased when the API
@@ -147,10 +147,10 @@ case $host in
     ;;
   *)
     AC_CHECK_LIB(c, dlopen,
-	         DYNAMIC_LD_LIBS="",
-	         AC_CHECK_LIB(dl, dlopen,
-             	              DYNAMIC_LD_LIBS="-ldl",
-	                      AC_MSG_ERROR(dynamic linker needed)))
+                 DYNAMIC_LD_LIBS="",
+                 AC_CHECK_LIB(dl, dlopen,
+                              DYNAMIC_LD_LIBS="-ldl",
+                              AC_MSG_ERROR(dynamic linker needed)))
     AC_SUBST(DYNAMIC_LD_LIBS)
     ;;
 esac
@@ -199,7 +199,7 @@ dnl ---------------------------------------------
 dnl Output configuration files
 dnl ---------------------------------------------
 AC_OUTPUT([
-Makefile 
+Makefile
 src/Makefile
 misc/Makefile
 misc/dvdread-config

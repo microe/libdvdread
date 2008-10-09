@@ -73,7 +73,7 @@
  * functionality!
  */
 
-#elif defined(__FreeBSD__) || defined(__sun) || defined(__bsdi__) || defined(WIN32) || defined(__CYGWIN__) || defined(__BEOS__)
+#elif defined(__FreeBSD__) || defined(__sun) || defined(__bsdi__) || defined(WIN32) || defined(__CYGWIN__) || defined(__BEOS__) || defined(__OS2__)
 #define B2N_16(x)                             \
  x = ((((x) & 0xff00) >> 8) |                 \
       (((x) & 0x00ff) << 8))

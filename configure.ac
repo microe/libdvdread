@@ -145,6 +145,9 @@ case $host in
   *cygwin*)
     LDFLAGS="-no-undefined $LDFLAGS"
     ;;
+  *os2*)
+    LDFLAGS="-no-undefined -Zbin-files $LDFLAGS"
+    ;;
   *)
     AC_CHECK_LIB(c, dlopen,
                  DYNAMIC_LD_LIBS="",

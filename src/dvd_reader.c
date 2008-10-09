@@ -508,11 +508,11 @@ dvd_reader_t *DVDOpen( const char *ppath )
       }
       fclose( mntfile );
     }
-#elif defined(_MSC_VER)
+#elif defined(_MSC_VER) || defined(__OS2__)
     auth_drive = DVDOpenImageFile( path, have_css );
 #endif
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) && !defined(__OS2__)
     if( !dev_name ) {
       fprintf( stderr, "libdvdread: Couldn't find device name.\n" );
     } else if( !auth_drive ) {

@@ -288,13 +288,15 @@ int dvdinput_setup(void)
   #define CSS_LIB "libdvdcss.2.dylib"
 #elif defined(WIN32)
   #define CSS_LIB "libdvdcss.dll"
+#elif defined(__OS2__)
+  #define CSS_LIB "dvdcss.dll"
 #else
   #define CSS_LIB "libdvdcss.so.2"
 #endif
   dvdcss_library = dlopen(CSS_LIB, RTLD_LAZY);
 
   if(dvdcss_library != NULL) {
-#if defined(__OpenBSD__) && !defined(__ELF__)
+#if defined(__OpenBSD__) && !defined(__ELF__) || defined(__OS2__)
 #define U_S "_"
 #else
 #define U_S

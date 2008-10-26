@@ -448,19 +448,35 @@ static int UDFFileEntry( uint8_t *data, uint8_t *FileType,
   p = 176 + L_EA;
   while( p < 176 + L_EA + L_AD ) {
     switch( flags & 0x0007 ) {
-    case 0: UDFShortAD( &data[ p ], ad, partition ); p += 8;  break;
-    case 1: UDFLongAD( &data[ p ], ad );  p += 16; break;
-    case 2: UDFExtAD( &data[ p ], ad );   p += 20; break;
+    case 0:
+      UDFShortAD( &data[ p ], ad, partition );
+      p += 8;
+      break;
+    case 1:
+      UDFLongAD( &data[ p ], ad );
+      p += 16;
+      break;
+    case 2:
+      UDFExtAD( &data[ p ], ad );
+      p += 20;
+      break;
     case 3:
       switch( L_AD ) {
-      case 8:  UDFShortAD( &data[ p ], ad, partition ); break;
-      case 16: UDFLongAD( &data[ p ], ad );  break;
-      case 20: UDFExtAD( &data[ p ], ad );   break;
+      case 8:
+        UDFShortAD( &data[ p ], ad, partition );
+        break;
+      case 16:
+        UDFLongAD( &data[ p ], ad );
+        break;
+      case 20:
+        UDFExtAD( &data[ p ], ad );
+        break;
       }
       p += L_AD;
       break;
     default:
-      p += L_AD; break;
+      p += L_AD;
+      break;
     }
   }
   return 0;

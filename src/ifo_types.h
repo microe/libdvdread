@@ -122,7 +122,7 @@ typedef struct {
       unsigned char dolby_encoded      : 1; /* suitable for surround decoding */
       unsigned char unknown6           : 3;
     } surround;
-  } app_info;
+  } ATTRIBUTE_PACKED app_info;
 } ATTRIBUTE_PACKED audio_attr_t;
 
 

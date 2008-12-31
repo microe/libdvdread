@@ -67,7 +67,7 @@ endif
 
 version.h:
 	sh $(SRC_PATH)/version.sh $(SRC_PATH) "$(SHLIB_VERSION)"
-	
+
 $(SRCS) $(DVDREAD_SRCS): version.h
 
 

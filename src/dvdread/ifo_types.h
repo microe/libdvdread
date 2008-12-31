@@ -23,7 +23,7 @@
 #define LIBDVDREAD_IFO_TYPES_H
 
 #include <inttypes.h>
-#include "dvd_reader.h"
+#include "dvdread/dvd_reader.h"
 
 
 #undef ATTRIBUTE_PACKED

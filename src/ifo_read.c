@@ -28,11 +28,11 @@
 #include <string.h>
 
 #include "bswap.h"
-#include "ifo_types.h"
-#include "ifo_read.h"
-#include "dvd_reader.h"
+#include "dvdread/ifo_types.h"
+#include "dvdread/ifo_read.h"
+#include "dvdread/dvd_reader.h"
 #include "dvdread_internal.h"
-#include "bitreader.h"
+#include "dvdread/bitreader.h"
 
 #ifndef DVD_BLOCK_LEN
 #define DVD_BLOCK_LEN 2048

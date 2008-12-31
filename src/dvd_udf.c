@@ -39,8 +39,8 @@
 #include <unistd.h>
 #include <inttypes.h>
 
-#include "dvd_reader.h"
-#include "dvd_udf.h"
+#include "dvdread/dvd_reader.h"
+#include "dvdread/dvd_udf.h"
 
 /* Private but located in/shared with dvd_reader.c */
 extern int UDFReadBlocksRaw( dvd_reader_t *device, uint32_t lb_number,

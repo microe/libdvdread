@@ -26,10 +26,10 @@
 #include <inttypes.h>
 
 #include "bswap.h"
-#include "nav_types.h"
-#include "nav_read.h"
+#include "dvdread/nav_types.h"
+#include "dvdread/nav_read.h"
 #include "dvdread_internal.h"
-#include "bitreader.h"
+#include "dvdread/bitreader.h"
 
 #define getbits_init dvdread_getbits_init
 #define getbits dvdread_getbits

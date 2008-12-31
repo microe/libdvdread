@@ -25,7 +25,7 @@
 #include <string.h>
 #include <inttypes.h>
 
-#include "bitreader.h"
+#include "dvdread/bitreader.h"
 
 int dvdread_getbits_init(getbits_state_t *state, uint8_t *start) {
   if ((state == NULL) || (start == NULL)) return 0;

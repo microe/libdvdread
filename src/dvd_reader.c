@@ -65,9 +65,9 @@ static inline int _private_gettimeofday( struct timeval *tv, void *tz )
 #include <mntent.h>
 #endif
 
-#include "dvd_udf.h"
+#include "dvdread/dvd_udf.h"
 #include "dvd_input.h"
-#include "dvd_reader.h"
+#include "dvdread/dvd_reader.h"
 #include "md5.h"
 
 #define DEFAULT_UDF_CACHE_LEVEL 1

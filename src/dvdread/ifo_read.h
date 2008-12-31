@@ -23,7 +23,7 @@
 #define LIBDVDREAD_IFO_READ_H
 
 #include "ifo_types.h"
-#include "dvd_reader.h"
+#include "dvdread/dvd_reader.h"
 
 #ifdef __cplusplus
 extern "C" {

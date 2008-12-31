@@ -33,7 +33,7 @@
 
 #include <inttypes.h>
 
-#include "dvd_reader.h"
+#include "dvdread/dvd_reader.h"
 
 #ifdef __cplusplus
 extern "C" {

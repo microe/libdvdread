@@ -196,7 +196,7 @@ extern "C"
  *                              pthread_attr_setstackaddr
  *
  * _POSIX_THREAD_PRIORITY_SCHEDULING (set)
- *                      If set, you can use realtime scheduling.
+ *                      If set, you can use real-time scheduling.
  *                      Indicates the availability of:
  *                              pthread_attr_getinheritsched
  *                              pthread_attr_getschedparam
@@ -393,7 +393,7 @@ enum {
   PTHREAD_SCOPE_SYSTEM          = 1,  /* Default */
 
 /*
- * pthread_setcancelstate paramters
+ * pthread_setcancelstate parameters
  */
   PTHREAD_CANCEL_ENABLE         = 0,  /* Default */
   PTHREAD_CANCEL_DISABLE        = 1,
@@ -420,7 +420,7 @@ enum {
 /*
  * ====================
  * ====================
- * Cancelation
+ * Cancellation
  * ====================
  * ====================
  */

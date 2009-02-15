@@ -249,7 +249,7 @@ static dvd_reader_t *DVDOpenImageFile( const char *location, int have_css )
 
   if( have_css ) {
     /* Only if DVDCSS_METHOD = title, a bit if it's disc or if
-     * DVDCSS_METHOD = key but region missmatch. Unfortunaly we
+     * DVDCSS_METHOD = key but region mismatch. Unfortunately we
      * don't have that information. */
 
     dvd->css_state = 1; /* Need key init. */
@@ -304,7 +304,7 @@ static char *sun_block2char( const char *path )
 #endif
 
 #if defined(SYS_BSD)
-/* FreeBSD /dev/(r)(a)cd0c (a is for atapi), recomended to _not_ use r
+/* FreeBSD /dev/(r)(a)cd0c (a is for atapi), recommended to _not_ use r
    OpenBSD /dev/rcd0c, it needs to be the raw device
    NetBSD  /dev/rcd0[d|c|..] d for x86, c (for non x86), perhaps others
    Darwin  /dev/rdisk0,  it needs to be the raw device
@@ -415,7 +415,7 @@ dvd_reader_t *DVDOpen( const char *ppath )
 #ifndef WIN32 /* don't have fchdir, and getcwd( NULL, ... ) is strange */
               /* Also WIN32 does not have symlinks, so we don't need this bit of code. */
 
-    /* Resolve any symlinks and get the absolut dir name. */
+    /* Resolve any symlinks and get the absolute dir name. */
     {
       char *new_path;
       int cdir = open( ".", O_RDONLY );
@@ -438,7 +438,7 @@ dvd_reader_t *DVDOpen( const char *ppath )
 
     /**
      * If we're being asked to open a directory, check if that directory
-     * is the mountpoint for a DVD-ROM which we can use instead.
+     * is the mount point for a DVD-ROM which we can use instead.
      */
 
     if( strlen( path_copy ) > 1 ) {

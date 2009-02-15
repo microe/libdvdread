@@ -21,7 +21,7 @@
  * by Matthew Grooms <elon@altavista.com>
  *
  * unistd.h - This is mostly a catch all header that maps standard unix
- *            libc calls to the equivelent win32 functions.
+ *            libc calls to the equivalent win32 functions.
  *
  */
 
@@ -63,7 +63,7 @@
 #define snprintf _snprintf
 #define vsnprintf _vsnprintf
 
-// FIXME : I dont remember why this is here
+// FIXME : I don't remember why this is here
 #define readlink
 
 #endif

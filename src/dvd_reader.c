@@ -53,7 +53,7 @@ static inline int _private_gettimeofday( struct timeval *tv, void *tz )
 #define lseek64 _lseeki64
 #endif
 
-#if defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__NetBSD__) || defined(__bsdi__) || defined(__DARWIN__)
+#if defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__NetBSD__) || defined(__bsdi__) || defined(__APPLE__)
 #define SYS_BSD 1
 #endif
 

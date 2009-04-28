@@ -330,21 +330,21 @@ static char *bsd_block2char( const char *path )
 dvd_reader_t *DVDOpen( const char *ppath )
 {
   struct stat fileinfo;
-  int ret, have_css;
+  int ret, have_css, retval, cdir = 0;
   dvd_reader_t *ret_val = NULL;
   char *dev_name = NULL;
-  char *path;
+  char *path = NULL, *new_path = NULL, *path_copy = NULL;
 
 #ifdef _MSC_VER
       int len;
 #endif
 
   if( ppath == NULL )
-    return 0;
+    goto DVDOpen_error;
 
       path = strdup(ppath);
   if( path == NULL )
-    return 0;
+    goto DVDOpen_error;
 
   /* Try to open libdvdcss or fall back to standard functions */
   have_css = dvdinput_setup();
@@ -374,8 +374,7 @@ dvd_reader_t *DVDOpen( const char *ppath )
     /* If we can't stat the file, give up */
     fprintf( stderr, "libdvdread: Can't stat %s\n", path );
     perror("");
-    free(path);
-    return NULL;
+    goto DVDOpen_error;
   }
 
   /* First check if this is a block/char device or a file*/
@@ -399,7 +398,6 @@ dvd_reader_t *DVDOpen( const char *ppath )
 
   } else if( S_ISDIR( fileinfo.st_mode ) ) {
     dvd_reader_t *auth_drive = 0;
-    char *path_copy;
 #if defined(SYS_BSD)
     struct fstab* fe;
 #elif defined(__sun) || defined(__linux__)
@@ -407,31 +405,33 @@ dvd_reader_t *DVDOpen( const char *ppath )
 #endif
 
     /* XXX: We should scream real loud here. */
-    if( !(path_copy = strdup( path ) ) ) {
-      free(path);
-      return NULL;
-    }
+    if( !(path_copy = strdup( path ) ) )
+      goto DVDOpen_error;
 
 #ifndef WIN32 /* don't have fchdir, and getcwd( NULL, ... ) is strange */
               /* Also WIN32 does not have symlinks, so we don't need this bit of code. */
 
     /* Resolve any symlinks and get the absolute dir name. */
     {
-      char *new_path;
-      int cdir = open( ".", O_RDONLY );
-
-      if( cdir >= 0 ) {
-        chdir( path_copy );
+      if( ( cdir  = open( ".", O_RDONLY ) ) >= 0 ) {
+        if( chdir( path_copy ) == -1 ) {
+          goto DVDOpen_error;
+        }
         new_path = malloc(PATH_MAX+1);
         if(!new_path) {
-          free(path);
-          return NULL;
+          goto DVDOpen_error;
         }
-        getcwd(new_path, PATH_MAX );
-        fchdir( cdir );
+        if( getcwd( new_path, PATH_MAX ) == NULL ) {
+          goto DVDOpen_error;
+        }
+        retval = fchdir( cdir );
         close( cdir );
-          free( path_copy );
-          path_copy = new_path;
+        cdir = -1;
+        if( retval == -1 ) {
+          goto DVDOpen_error;
+        }
+        path_copy = new_path;
+        new_path = NULL;
       }
     }
 #endif
@@ -527,7 +527,9 @@ dvd_reader_t *DVDOpen( const char *ppath )
 #endif
 
     free( dev_name );
+    dev_name = NULL;
     free( path_copy );
+    path_copy = NULL;
 
     /**
      * If we've opened a drive, just use that.
@@ -544,9 +546,17 @@ dvd_reader_t *DVDOpen( const char *ppath )
       return ret_val;
   }
 
+DVDOpen_error:
   /* If it's none of the above, screw it. */
   fprintf( stderr, "libdvdread: Could not open %s\n", path );
+  if( path != NULL )
     free( path );
+  if ( path_copy != NULL )
+    free( path_copy );
+  if ( cdir >= 0 )
+    close( cdir );
+  if ( new_path != NULL )
+    free( new_path );
   return NULL;
 }
 

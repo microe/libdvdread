@@ -333,7 +333,7 @@ dvd_reader_t *DVDOpen( const char *ppath )
   char *dev_name = NULL;
   char *path = NULL, *new_path = NULL, *path_copy = NULL;
 
-#ifdef _MSC_VER
+#ifdef _WIN32
       int len;
 #endif
 
@@ -347,7 +347,7 @@ dvd_reader_t *DVDOpen( const char *ppath )
   /* Try to open libdvdcss or fall back to standard functions */
   have_css = dvdinput_setup();
 
-#ifdef _MSC_VER
+#ifdef _WIN32
   /* Strip off the trailing \ if it is not a drive */
   len = strlen(path);
   if ((len > 1) &&
@@ -506,11 +506,11 @@ dvd_reader_t *DVDOpen( const char *ppath )
       }
       fclose( mntfile );
     }
-#elif defined(_MSC_VER) || defined(__OS2__)
+#elif defined(_WIN32) || defined(__OS2__)
     auth_drive = DVDOpenImageFile( path, have_css );
 #endif
 
-#if !defined(_MSC_VER) && !defined(__OS2__)
+#if !defined(_WIN32) && !defined(__OS2__)
     if( !dev_name ) {
       fprintf( stderr, "libdvdread: Couldn't find device name.\n" );
     } else if( !auth_drive ) {

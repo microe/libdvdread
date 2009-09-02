@@ -309,12 +309,18 @@ static char *sun_block2char( const char *path )
 
 #if defined(SYS_BSD)
 /* FreeBSD /dev/(r)(a)cd0c (a is for atapi), recommended to _not_ use r
+   update: FreeBSD and DragonFly no longer uses the prefix so don't add it.
    OpenBSD /dev/rcd0c, it needs to be the raw device
    NetBSD  /dev/rcd0[d|c|..] d for x86, c (for non x86), perhaps others
    Darwin  /dev/rdisk0,  it needs to be the raw device
-   BSD/OS  /dev/sr0c (if not mounted) or /dev/rsr0c ('c' any letter will do) */
+   BSD/OS  /dev/sr0c (if not mounted) or /dev/rsr0c ('c' any letter will do)
+   returns a string allocated with strdup. It should be freed when no longer
+   used. */
 static char *bsd_block2char( const char *path )
 {
+#if defined(__FreeBSD__) || defined(__DragonFly__)
+  return (char *) strdup( path );
+#else
   char *new_path;
 
   /* If it doesn't start with "/dev/" or does start with "/dev/r" exit */
@@ -327,6 +333,7 @@ static char *bsd_block2char( const char *path )
   strcat( new_path, path + strlen( "/dev/" ) );
 
   return new_path;
+#endif /* __FreeBSD__ || __DragonFly__ */
 }
 #endif
 
@@ -389,17 +396,18 @@ dvd_reader_t *DVDOpen( const char *ppath )
     /**
      * Block devices and regular files are assumed to be DVD-Video images.
      */
+    dvd_reader_t *dvd = NULL;
 #if defined(__sun)
-    ret_val = DVDOpenImageFile( sun_block2char( path ), have_css );
+    dev_name = sun_block2char( path );
 #elif defined(SYS_BSD)
-    ret_val = DVDOpenImageFile( bsd_block2char( path ), have_css );
+    dev_name = bsd_block2char( path );
 #else
-    ret_val = DVDOpenImageFile( path, have_css );
+    dev_name = strdup( path );
 #endif
-
+    dvd = DVDOpenImageFile( dev_name, have_css );
+    free( dev_name );
     free(path);
-    return ret_val;
-
+    return dvd;
   } else if( S_ISDIR( fileinfo.st_mode ) ) {
     dvd_reader_t *auth_drive = 0;
 #if defined(SYS_BSD)

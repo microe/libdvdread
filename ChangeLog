@@ -114,7 +114,7 @@ libdvdnav (0.1.0-1.1) unstable; urgency=low
       (see patch from Jamie Wilkinson for a better solution)
 
  -- Siggi Langauf <siggi@debian.org>  Mon, 20 May 2002 15:57:40 +0200
- 
+
 libdvdnav (0.0.1-1) unstable; urgency=low
 
   * Repackaged using dh-make.

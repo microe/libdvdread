@@ -111,12 +111,6 @@ struct dvd_file_s {
   ssize_t filesize;
 };
 
-struct dvd_stat_s {
-  off_t size;          /**< Total size of file in bytes */
-  int nr_parts;        /**< Number of file parts */
-  off_t parts_size[9]; /**< Size of each part in bytes */
-};
-
 int UDFReadBlocksRaw( dvd_reader_t *device, uint32_t lb_number,
                       size_t block_count, unsigned char *data,
                       int encrypted );

@@ -453,6 +453,13 @@ dvd_reader_t *DVDOpen( const char *ppath )
       }
     }
 
+#ifdef _WIN32
+    if(strlen(path_copy) > TITLES_MAX) {
+      if(!strcasecmp(&(path_copy[strlen( path_copy ) - TITLES_MAX]),
+                       "\\video_ts"))
+        path_copy[strlen(path_copy) - (TITLES_MAX-1)] = '\0';
+    }
+#endif
     if( strlen( path_copy ) > TITLES_MAX ) {
       if( !strcasecmp( &(path_copy[ strlen( path_copy ) - TITLES_MAX ]),
                        "/video_ts" ) ) {

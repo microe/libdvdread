@@ -28,6 +28,7 @@
 #include <stdio.h>
 #include <errno.h>
 #include <string.h>
+#include <ctype.h>
 #include <unistd.h>
 #include <limits.h>
 #include <dirent.h>
@@ -522,6 +523,12 @@ dvd_reader_t *DVDOpen( const char *ppath )
       fclose( mntfile );
     }
 #elif defined(_WIN32) || defined(__OS2__)
+#ifdef __OS2__
+    /* Use DVDOpenImageFile() only if it is a drive */
+    if((path[0]>='A' && path[0]<='Z') && path[1] == ':' &&
+        ( !path[2] ||
+          ((path[2] == '\\' || path[2] == '/') && !path[3])))
+#endif
     auth_drive = DVDOpenImageFile( path, have_css );
 #endif
 

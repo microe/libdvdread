@@ -454,7 +454,7 @@ dvd_reader_t *DVDOpen( const char *ppath )
       }
     }
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(__OS2__)
     if(strlen(path_copy) > TITLES_MAX) {
       if(!strcasecmp(&(path_copy[strlen( path_copy ) - TITLES_MAX]),
                        "\\video_ts"))

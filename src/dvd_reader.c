@@ -341,7 +341,7 @@ dvd_reader_t *DVDOpen( const char *ppath )
   char *dev_name = NULL;
   char *path = NULL, *new_path = NULL, *path_copy = NULL;
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(__OS2__)
       int len;
 #endif
 
@@ -355,7 +355,7 @@ dvd_reader_t *DVDOpen( const char *ppath )
   /* Try to open libdvdcss or fall back to standard functions */
   have_css = dvdinput_setup();
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(__OS2__)
   /* Strip off the trailing \ if it is not a drive */
   len = strlen(path);
   if ((len > 1) &&

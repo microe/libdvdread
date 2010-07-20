@@ -542,7 +542,7 @@ dvd_reader_t *DVDOpen( const char *ppath )
 #else
     if( !auth_drive ) {
         fprintf( stderr, "libdvdread: Device %s inaccessible, "
-                 "CSS authentication not available.\n", dev_name );
+                 "CSS authentication not available.\n", path );
     }
 #endif
 

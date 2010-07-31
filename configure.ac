@@ -168,26 +168,6 @@ DEBUG_CFLAGS="-g -DDEBUG $CFLAGS"
 AC_SUBST(DEBUG_CFLAGS)
 
 dnl ---------------------------------------------
-dnl Get where .m4 should be installed.
-dnl ---------------------------------------------
-case "`id`" in
-  uid=0\(* )
-    AC_MSG_CHECKING(for aclocal directory)
-    if (aclocal --version) < /dev/null > /dev/null 2>&1; then
-      ACLOCAL_DIR="`eval $ACLOCAL --print-ac-dir`"
-      AC_MSG_RESULT($ACLOCAL_DIR)
-    else
-      ACLOCAL_DIR="/usr/local/share/aclocal"
-      AC_MSG_RESULT(none - will be installed in $ACLOCAL_DIR)
-    fi
-    escapedprefix="`echo $prefix | sed -e 's/\\//\\\\\//g'`"
-    ACLOCAL_DIR="`echo $ACLOCAL_DIR|sed -e 's/^'$escapedprefix/'\${prefix}'/`"
-    AC_SUBST(ACLOCAL_DIR)
-    ;;
-esac
-AM_CONDITIONAL(INSTALL_M4, test x"$ACLOCAL_DIR" != "x")
-
-dnl ---------------------------------------------
 dnl Check for doxygen (dynamic documentation generator)
 dnl ---------------------------------------------
 AC_CHECK_PROG(DOXYGEN, doxygen, doxygen, no)

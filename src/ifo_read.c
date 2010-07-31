@@ -1301,7 +1301,7 @@ int ifoRead_PTL_MAIT(ifo_handle_t *ifofile) {
     if(!DVDFileSeek_(ifofile->file,
                      ifofile->vmgi_mat->ptl_mait * DVD_BLOCK_LEN
                      + ptl_mait->countries[i].pf_ptl_mai_start_byte)) {
-      fprintf(stderr, "libdvdread: Unable to seak PTL_MAIT table.\n");
+      fprintf(stderr, "libdvdread: Unable to seek PTL_MAIT table.\n");
       free(ptl_mait->countries);
       free(ptl_mait);
       return 0;

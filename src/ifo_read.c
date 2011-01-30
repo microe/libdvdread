@@ -1325,6 +1325,9 @@ int ifoRead_PTL_MAIT(ifo_handle_t *ifofile) {
     ifofile->ptl_mait = 0;
     return 0;
   }
+  for(i = 0; i < ptl_mait->nr_of_countries; i++) {
+    ptl_mait->countries[i].pf_ptl_mai = NULL;
+  }
 
   for(i = 0; i < ptl_mait->nr_of_countries; i++) {
     if(!(DVDReadBytes(ifofile->file, &ptl_mait->countries[i], PTL_MAIT_COUNTRY_SIZE))) {
@@ -1357,18 +1360,21 @@ int ifoRead_PTL_MAIT(ifo_handle_t *ifofile) {
       fprintf(stderr, "libdvdread: Unable to seek PTL_MAIT table.\n");
       free(ptl_mait->countries);
       free(ptl_mait);
+      ifofile->ptl_mait = NULL;
       return 0;
     }
     info_length = (ptl_mait->nr_of_vtss + 1) * sizeof(pf_level_t);
     pf_temp = (uint16_t *)malloc(info_length);
     if(!pf_temp) {
       free_ptl_mait(ptl_mait, i);
+      ifofile->ptl_mait = NULL;
       return 0;
     }
     if(!(DVDReadBytes(ifofile->file, pf_temp, info_length))) {
       fprintf(stderr, "libdvdread: Unable to read PTL_MAIT table.\n");
       free(pf_temp);
       free_ptl_mait(ptl_mait, i);
+      ifofile->ptl_mait = NULL;
       return 0;
     }
     for (j = 0; j < ((ptl_mait->nr_of_vtss + 1) * 8); j++) {
@@ -1378,6 +1384,7 @@ int ifoRead_PTL_MAIT(ifo_handle_t *ifofile) {
     if(!ptl_mait->countries[i].pf_ptl_mai) {
       free(pf_temp);
       free_ptl_mait(ptl_mait, i);
+      ifofile->ptl_mait = NULL;
       return 0;
     }
     { /* Transpose the array so we can use C indexing. */

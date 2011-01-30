@@ -1348,7 +1348,7 @@ int ifoRead_PTL_MAIT(ifo_handle_t *ifofile) {
     CHECK_ZERO(ptl_mait->countries[i].zero_1);
     CHECK_ZERO(ptl_mait->countries[i].zero_2);
     CHECK_VALUE(ptl_mait->countries[i].pf_ptl_mai_start_byte
-                + 8*2 * (ptl_mait->nr_of_vtss + 1) <= ptl_mait->last_byte + 1);
+                + sizeof(pf_level_t) * (ptl_mait->nr_of_vtss + 1) <= ptl_mait->last_byte + 1);
   }
 
   for(i = 0; i < ptl_mait->nr_of_countries; i++) {
@@ -1389,7 +1389,7 @@ int ifoRead_PTL_MAIT(ifo_handle_t *ifofile) {
     }
     { /* Transpose the array so we can use C indexing. */
       int level, vts;
-      for(level = 0; level < 8; level++) {
+      for(level = 0; level < PTL_MAIT_NUM_LEVEL; level++) {
         for(vts = 0; vts <= ptl_mait->nr_of_vtss; vts++) {
           ptl_mait->countries[i].pf_ptl_mai[vts][level] =
             pf_temp[(7-level)*(ptl_mait->nr_of_vtss+1) + vts];

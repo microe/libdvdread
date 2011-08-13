@@ -1141,7 +1141,7 @@ void ifoFree_TT_SRPT(ifo_handle_t *ifofile) {
 int ifoRead_VTS_PTT_SRPT(ifo_handle_t *ifofile) {
   vts_ptt_srpt_t *vts_ptt_srpt;
   int info_length, i, j;
-  uint32_t *data;
+  uint32_t *data = NULL;
 
   if(!ifofile)
     return 0;
@@ -1156,7 +1156,7 @@ int ifoRead_VTS_PTT_SRPT(ifo_handle_t *ifofile) {
                    ifofile->vtsi_mat->vts_ptt_srpt * DVD_BLOCK_LEN))
     return 0;
 
-  vts_ptt_srpt = (vts_ptt_srpt_t *)malloc(sizeof(vts_ptt_srpt_t));
+  vts_ptt_srpt = malloc(sizeof(vts_ptt_srpt_t));
   if(!vts_ptt_srpt)
     return 0;
 
@@ -1176,8 +1176,7 @@ int ifoRead_VTS_PTT_SRPT(ifo_handle_t *ifofile) {
   CHECK_VALUE(vts_ptt_srpt->nr_of_srpts < 100); /* ?? */
 
   info_length = vts_ptt_srpt->last_byte + 1 - VTS_PTT_SRPT_SIZE;
-
-  data = (uint32_t *)malloc(info_length);
+  data = malloc(info_length);
   if(!data) {
     free(vts_ptt_srpt);
     ifofile->vts_ptt_srpt = 0;

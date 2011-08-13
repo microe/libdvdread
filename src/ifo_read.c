@@ -1176,9 +1176,9 @@ int ifoRead_VTS_PTT_SRPT(ifo_handle_t *ifofile) {
 
   info_length = vts_ptt_srpt->last_byte + 1 - VTS_PTT_SRPT_SIZE;
   data = malloc(info_length);
-  if(!data) {
+  if(!data)
     goto fail;
-  }
+
   if(!(DVDReadBytes(ifofile->file, data, info_length))) {
     fprintf(stderr, "libdvdread: Unable to read PTT search table.\n");
     goto fail;
@@ -1196,19 +1196,21 @@ int ifoRead_VTS_PTT_SRPT(ifo_handle_t *ifofile) {
   vts_ptt_srpt->ttu_offset = data;
 
   vts_ptt_srpt->title = malloc(vts_ptt_srpt->nr_of_srpts * sizeof(ttu_t));
-  if(!vts_ptt_srpt->title) {
+  if(!vts_ptt_srpt->title)
     goto fail;
-  }
+
   for(i = 0; i < vts_ptt_srpt->nr_of_srpts; i++) {
     int n;
     if(i < vts_ptt_srpt->nr_of_srpts - 1)
       n = (data[i+1] - data[i]);
     else
       n = (vts_ptt_srpt->last_byte + 1 - data[i]);
+
     /* assert(n > 0 && (n % 4) == 0);
        Magic Knight Rayearth Daybreak is mastered very strange and has
        Titles with 0 PTTs. */
     if(n < 0) n = 0;
+
     CHECK_VALUE(n % 4 == 0);
 
     vts_ptt_srpt->title[i].nr_of_ptts = n / 4;

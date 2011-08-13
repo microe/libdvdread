@@ -1139,7 +1139,7 @@ void ifoFree_TT_SRPT(ifo_handle_t *ifofile) {
 
 
 int ifoRead_VTS_PTT_SRPT(ifo_handle_t *ifofile) {
-  vts_ptt_srpt_t *vts_ptt_srpt;
+  vts_ptt_srpt_t *vts_ptt_srpt = NULL;
   int info_length, i, j;
   uint32_t *data = NULL;
 
@@ -1164,8 +1164,7 @@ int ifoRead_VTS_PTT_SRPT(ifo_handle_t *ifofile) {
 
   if(!(DVDReadBytes(ifofile->file, vts_ptt_srpt, VTS_PTT_SRPT_SIZE))) {
     fprintf(stderr, "libdvdread: Unable to read PTT search table.\n");
-    free(vts_ptt_srpt);
-    return 0;
+    goto fail;
   }
 
   B2N_16(vts_ptt_srpt->nr_of_srpts);
@@ -1178,16 +1177,11 @@ int ifoRead_VTS_PTT_SRPT(ifo_handle_t *ifofile) {
   info_length = vts_ptt_srpt->last_byte + 1 - VTS_PTT_SRPT_SIZE;
   data = malloc(info_length);
   if(!data) {
-    free(vts_ptt_srpt);
-    ifofile->vts_ptt_srpt = 0;
-    return 0;
+    goto fail;
   }
   if(!(DVDReadBytes(ifofile->file, data, info_length))) {
     fprintf(stderr, "libdvdread: Unable to read PTT search table.\n");
-    free(vts_ptt_srpt);
-    free(data);
-    ifofile->vts_ptt_srpt = 0;
-    return 0;
+    goto fail;
   }
 
   for(i = 0; i < vts_ptt_srpt->nr_of_srpts; i++) {
@@ -1203,10 +1197,7 @@ int ifoRead_VTS_PTT_SRPT(ifo_handle_t *ifofile) {
 
   vts_ptt_srpt->title = malloc(vts_ptt_srpt->nr_of_srpts * sizeof(ttu_t));
   if(!vts_ptt_srpt->title) {
-    free(vts_ptt_srpt);
-    free(data);
-    ifofile->vts_ptt_srpt = 0;
-    return 0;
+    goto fail;
   }
   for(i = 0; i < vts_ptt_srpt->nr_of_srpts; i++) {
     int n;
@@ -1225,10 +1216,8 @@ int ifoRead_VTS_PTT_SRPT(ifo_handle_t *ifofile) {
     if(!vts_ptt_srpt->title[i].ptt) {
       for(n = 0; n < i; n++)
         free(vts_ptt_srpt->title[n].ptt);
-      free(vts_ptt_srpt);
-      free(data);
-      ifofile->vts_ptt_srpt = 0;
-      return 0;
+
+      goto fail;
     }
     for(j = 0; j < vts_ptt_srpt->title[i].nr_of_ptts; j++) {
       /* The assert placed here because of Magic Knight Rayearth Daybreak */
@@ -1258,6 +1247,12 @@ int ifoRead_VTS_PTT_SRPT(ifo_handle_t *ifofile) {
   }
 
   return 1;
+
+fail:
+  free(data);
+  ifofile->vts_ptt_srpt = 0;
+  free(vts_ptt_srpt);
+  return 0;
 }
 
 

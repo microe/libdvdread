@@ -1160,6 +1160,7 @@ int ifoRead_VTS_PTT_SRPT(ifo_handle_t *ifofile) {
   if(!vts_ptt_srpt)
     return 0;
 
+  vts_ptt_srpt->title = NULL;
   ifofile->vts_ptt_srpt = vts_ptt_srpt;
 
   if(!(DVDReadBytes(ifofile->file, vts_ptt_srpt, VTS_PTT_SRPT_SIZE))) {
@@ -1257,6 +1258,7 @@ int ifoRead_VTS_PTT_SRPT(ifo_handle_t *ifofile) {
 fail:
   free(data);
   ifofile->vts_ptt_srpt = 0;
+  free(vts_ptt_srpt->title);
   free(vts_ptt_srpt);
   return 0;
 }

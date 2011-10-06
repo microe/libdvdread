@@ -1896,6 +1896,7 @@ static int ifoRead_PGCIT_internal(ifo_handle_t *ifofile, pgcit_t *pgcit,
         ifoFree_PGC(pgcit->pgci_srp[j].pgc);
         free(pgcit->pgci_srp[j].pgc);
       }
+      free(pgcit->pgci_srp[i].pgc);
       goto fail;
     }
   }
@@ -1911,7 +1912,10 @@ static void ifoFree_PGCIT_internal(pgcit_t *pgcit) {
   if(pgcit) {
     int i;
     for(i = 0; i < pgcit->nr_of_pgci_srp; i++)
+    {
       ifoFree_PGC(pgcit->pgci_srp[i].pgc);
+      free(pgcit->pgci_srp[i].pgc);
+    }
     free(pgcit->pgci_srp);
   }
 }

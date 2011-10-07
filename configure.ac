@@ -13,8 +13,8 @@ dnl
 dnl These are defined in m4 so they can be passed to AC_INIT
 dnl --------------------------------------------------------------
 m4_define([dvdread_major], [4])
-m4_define([dvdread_minor], [1])
-m4_define([dvdread_sub],   [4])
+m4_define([dvdread_minor], [2])
+m4_define([dvdread_sub],   [0])
 m4_define([dvdread_pre],   [])
 
 AC_INIT([libdvdread], [dvdread_major.dvdread_minor.dvdread_sub[]dvdread_pre])

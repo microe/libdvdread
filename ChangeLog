@@ -1,4 +1,4 @@
-libdvdread (4.1.4)
+libdvdread (4.2.0)
   * added OS/2 support
   * fixed ARM memory alignment issue
   * portability fixes for *BSD, Mac OS X, MINGW and OS/2

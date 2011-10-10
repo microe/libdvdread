@@ -1,5 +1,7 @@
-* Support DVDs with errors on them. So we can recover from corrupt sectors in the .VOB. Also, handle corrupt .IFO files by using the backup .BUP files.
-* Support Random and Shuffle Titles. Only sequencial Titles are currently supported.
+* Support DVDs with errors on them. So we can recover from corrupt sectors in
+  the .VOB. Be able to read the VAT ICB at the last sector of the UDF disk (see
+  function UDFGetAVDP)
+* Support Random and Shuffle Titles. Only sequential Titles are currently supported.
 * rework documentation
 * implement restriction levels:
    0 - execute everything as the app commands
@@ -8,5 +10,4 @@
    3 - fully respect user prohibitions
 * cleanup public API and fix libtool versioning
 * Update decoder.c with some of the more rare commands. Update already done to vmcmd.c
-* RELEASE! (maybe it's time for libdvdnav 0.5?)
-* Replace the auto* build system with a custom and clean one based on ffmpeg's (partly done)
+* Replace the auto* build system with a custom and clean one based on ffmpeg's (mostly done)

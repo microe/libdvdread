@@ -475,8 +475,7 @@ ifo_handle_t *ifoOpenVTSI(dvd_reader_t *dvd, int title) {
     return NULL;
   }
 
-  ifoRead_VTS(ifofile);
-  if(ifofile->vtsi_mat)
+  if(ifoRead_VTS(ifofile) && ifofile->vtsi_mat)
     return ifofile;
 
   fprintf(stderr, "libdvdread: Invalid IFO for title %d (VTS_%02d_0.IFO).\n",

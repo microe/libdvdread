@@ -475,7 +475,7 @@ ifo_handle_t *ifoOpenVTSI(dvd_reader_t *dvd, int title) {
     return NULL;
   }
 
-  if(ifoRead_VTS(ifofile) && ifofile->vtsi_mat)
+  if(ifoRead_VTS(ifofile) && ifofile->vtsi_mat != NULL)
     return ifofile;
 
   fprintf(stderr, "libdvdread: Invalid IFO for title %d (VTS_%02d_0.IFO).\n",
@@ -619,19 +619,19 @@ static int ifoRead_VTS(ifo_handle_t *ifofile) {
 
   if(!DVDFileSeek_(ifofile->file, 0)) {
     free(ifofile->vtsi_mat);
-    ifofile->vtsi_mat = 0;
+    ifofile->vtsi_mat = NULL;
     return 0;
   }
 
   if(!(DVDReadBytes(ifofile->file, vtsi_mat, sizeof(vtsi_mat_t)))) {
     free(ifofile->vtsi_mat);
-    ifofile->vtsi_mat = 0;
+    ifofile->vtsi_mat = NULL;
     return 0;
   }
 
   if(strncmp("DVDVIDEO-VTS", vtsi_mat->vts_identifier, 12) != 0) {
     free(ifofile->vtsi_mat);
-    ifofile->vtsi_mat = 0;
+    ifofile->vtsi_mat = NULL;
     return 0;
   }
 

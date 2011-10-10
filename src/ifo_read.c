@@ -1372,6 +1372,7 @@ int ifoRead_PTL_MAIT(ifo_handle_t *ifofile) {
       ifofile->ptl_mait = NULL;
       return 0;
     }
+    memset(pf_temp, 0, info_length);
     if(!(DVDReadBytes(ifofile->file, pf_temp, info_length))) {
       fprintf(stderr, "libdvdread: Unable to read PTL_MAIT table at index %d.\n",i);
       free(pf_temp);

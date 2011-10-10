@@ -24,7 +24,6 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#include "config.h"
 #include "dvdread/dvd_reader.h"
 #include "dvd_input.h"
 

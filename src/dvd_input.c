@@ -24,7 +24,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#include "config.h"
+#include "config.h" /* Required for MingW */
 #include "dvdread/dvd_reader.h"
 #include "dvd_input.h"
 

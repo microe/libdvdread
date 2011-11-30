@@ -137,6 +137,11 @@ esac
 dnl ---------------------------------------------
 dnl dynamic linker
 dnl ---------------------------------------------
+AC_ARG_ENABLE([libdvdcss], [  --enable-libdvdcss    force linking against libdvdcss])
+
+CSS_LIBS=""
+if test x"$enable_libdvdcss" != xyes; then
+dnl dlopen libdvdcss
 case $host in
   *mingw32*)
     CFLAGS="-idirafter \$(top_srcdir)/msvc/include $CFLAGS"
@@ -157,6 +162,18 @@ case $host in
     AC_SUBST(DYNAMIC_LD_LIBS)
     ;;
 esac
+else
+dnl link with libdvdcss
+  CSS_LIBS=-ldvdcss
+  case "${host}" in
+    *darwin*) CSS_LIBS="${CSS_LIBS} -Wl,-framework,CoreFoundation -Wl,-framework,IOKit"
+    ;;
+  esac
+  AC_CHECK_LIB(dvdcss, dvdcss_interface_2,, AC_MSG_ERROR(You need libdvdcss.so.2 or later))
+  AC_CHECK_HEADERS(dvdcss/dvdcss.h,, AC_MSG_ERROR(You need libdvdcss (dvdcss.h)))
+fi
+
+AC_SUBST(CSS_LIBS)
 
 dnl ---------------------------------------------
 dnl cflags

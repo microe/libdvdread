@@ -8,4 +8,4 @@ Description: Low level DVD access library
 Version: @VERSION@
 
 Cflags: -I${includedir}
-Libs: -L${libdir} -ldvdread
+Libs: -L${libdir} -ldvdread @CSS_LIBS@

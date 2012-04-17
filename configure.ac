@@ -144,7 +144,12 @@ if test x"$enable_libdvdcss" != xyes; then
 dnl dlopen libdvdcss
 case $host in
   *mingw32*)
-    CFLAGS="-idirafter \$(top_srcdir)/msvc/include $CFLAGS"
+    AC_CHECK_LIB(c, dlopen,
+                 DYNAMIC_LD_LIBS="",
+                 AC_CHECK_LIB(dl, dlopen,
+                              DYNAMIC_LD_LIBS="-ldl",
+                              AC_MSG_ERROR(dynamic linker needed)))
+    AC_SUBST(DYNAMIC_LD_LIBS)
     LDFLAGS="-no-undefined $LDFLAGS"
     ;;
   *cygwin*)

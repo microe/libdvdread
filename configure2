@@ -96,7 +96,7 @@ PREFIX=`cd $PREFIX && pwd`
 
 test -z "$libdir" && libdir=$PREFIX/lib
 test -z "$shlibdir" && shlibdir=$PREFIX/lib
-test -z "$incdir" && dvdread_incdir=$PREFIX/include/dvdread
+test -z "$incdir" && incdir=$PREFIX/include/dvdread
 
 targetos=`uname -s`
 case $targetos in
@@ -127,7 +127,6 @@ PREFIX=$PREFIX
 libdir=$libdir
 shlibdir=$shlibdir
 incdir=$incdir
-dvdread_incdir=$dvdread_incdir
 BUILD_SHARED=$SHARED
 BUILD_STATIC=$STATIC
 SHLIB_VERSION=$dvdread_sh_version

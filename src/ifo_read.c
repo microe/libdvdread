@@ -1081,6 +1081,12 @@ int ifoRead_TT_SRPT(ifo_handle_t *ifofile) {
     return 0;
   }
 
+  if(tt_srpt->nr_of_srpts>info_length/sizeof(title_info_t)){
+    fprintf(stderr,"libdvdread: data mismatch: info_length (%ld)!= nr_of_srpts (%d). Truncating.\n",
+            info_length/sizeof(title_info_t),tt_srpt->nr_of_srpts);
+    tt_srpt->nr_of_srpts=info_length/sizeof(title_info_t);
+  }
+
   for(i =  0; i < tt_srpt->nr_of_srpts; i++) {
     B2N_16(tt_srpt->title[i].nr_of_ptts);
     B2N_16(tt_srpt->title[i].parental_id);

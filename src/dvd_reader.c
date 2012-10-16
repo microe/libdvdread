@@ -35,6 +35,7 @@
 
 /* misc win32 helpers */
 #ifdef WIN32
+#include <windows.h>
 #ifndef HAVE_GETTIMEOFDAY
 /* replacement gettimeofday implementation */
 #include <sys/timeb.h>
@@ -548,14 +549,17 @@ dvd_reader_t *DVDOpen( const char *ppath )
       }
       fclose( mntfile );
     }
-#elif defined(_WIN32) || defined(__OS2__)
-#ifdef __OS2__
+#elif defined(__OS2__)
     /* Use DVDOpenImageFile() only if it is a drive */
     if(isalpha(path[0]) && path[1] == ':' &&
         ( !path[2] ||
           ((path[2] == '\\' || path[2] == '/') && !path[3])))
-#endif
     auth_drive = DVDOpenImageFile( path, have_css );
+#elif defined(_WIN32)
+    if( GetDriveType( path_copy ) == DRIVE_CDROM ) {
+      path_copy[2] = '\0';
+      auth_drive = DVDOpenImageFile( path_copy, have_css );
+    }
 #endif
 
 #if !defined(_WIN32) && !defined(__OS2__)

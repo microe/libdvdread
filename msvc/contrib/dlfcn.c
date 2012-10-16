@@ -9,8 +9,8 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "dlfcn.h"
-#include "os_types.h"
+#include "../include/dlfcn.h"
+#include "../include/os_types.h"
 
 void *dlopen(const char *module_name, int mode)
 {

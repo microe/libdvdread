@@ -139,17 +139,29 @@ dnl dynamic linker
 dnl ---------------------------------------------
 AC_ARG_ENABLE([libdvdcss], [  --enable-libdvdcss    force linking against libdvdcss])
 
+AC_ARG_ENABLE([dlfcn],
+  [AS_HELP_STRING([--enable-dlfcn],
+  [use builtin dlfcn for mingw (default is auto)])],
+  [use_builtin_dlfcn=$enableval],
+  [use_builtin_dlfcn=no])
+
+if [[ $use_builtin_dlfcn = "yes" ]]; then
+	AC_DEFINE([USING_BUILTIN_DLFCN], [1], ["Define to 1 to use builtin dlfcn"])
+fi
+
 CSS_LIBS=""
 if test x"$enable_libdvdcss" != xyes; then
 dnl dlopen libdvdcss
 case $host in
   *mingw32*)
-    AC_CHECK_LIB(c, dlopen,
-                 DYNAMIC_LD_LIBS="",
-                 AC_CHECK_LIB(dl, dlopen,
-                              DYNAMIC_LD_LIBS="-ldl",
-                              AC_MSG_ERROR(dynamic linker needed)))
-    AC_SUBST(DYNAMIC_LD_LIBS)
+    if [[ $use_builtin_dlfcn = "no" ]]; then
+        AC_CHECK_LIB(c, dlopen,
+                     DYNAMIC_LD_LIBS="",
+                     AC_CHECK_LIB(dl, dlopen,
+                                  DYNAMIC_LD_LIBS="-ldl",
+                                  AC_MSG_WARN(Using builtin dlopen)))
+        AC_SUBST(DYNAMIC_LD_LIBS)
+    fi
     LDFLAGS="-no-undefined $LDFLAGS"
     ;;
   *cygwin*)
@@ -179,6 +191,7 @@ dnl link with libdvdcss
 fi
 
 AC_SUBST(CSS_LIBS)
+
 
 dnl ---------------------------------------------
 dnl cflags

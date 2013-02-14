@@ -1448,7 +1448,6 @@ int ifoRead_VTS_TMAPT(ifo_handle_t *ifofile) {
 
   if(ifofile->vtsi_mat->vts_tmapt == 0) { /* optional(?) */
     ifofile->vts_tmapt = NULL;
-    fprintf(stderr,"libdvdread: No VTS_TMAPT available - skipping.\n");
     return 1;
   }
 

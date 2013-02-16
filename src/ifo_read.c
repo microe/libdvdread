@@ -1926,7 +1926,7 @@ static void ifoFree_PGCIT_internal(pgcit_t *pgcit) {
     int i;
     for(i = 0; i < pgcit->nr_of_pgci_srp; i++)
     {
-      ifoFree_PGC(&(*pgcit)->pgci_srp[i].pgc);
+      ifoFree_PGC(pgcit->pgci_srp[i].pgc);
     }
     free(pgcit->pgci_srp);
   }

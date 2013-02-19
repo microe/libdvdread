@@ -67,6 +67,12 @@
 #define B2N_32(x) x = be32toh(x)
 #define B2N_64(x) x = be64toh(x)
 
+#elif defined(__QNXNTO__)
+#include <gulliver.h>
+#define B2N_16(x) x = ENDIAN_RET16(x)
+#define B2N_32(x) x = ENDIAN_RET32(x)
+#define B2N_64(x) x = ENDIAN_RET64(x)
+
 /* This is a slow but portable implementation, it has multiple evaluation
  * problems so beware.
  * Old FreeBSD's and Solaris don't have <byteswap.h> or any other such
